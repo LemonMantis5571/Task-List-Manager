@@ -8,7 +8,7 @@ const TaskForm = () => {
     const nameRef = useRef('');
     const descriptionRef = useRef('');
 
-    const dispatch = TaskDispatchContext();
+    const {dispatch} = TaskDispatchContext();
 
     
     const submit = (e) => {

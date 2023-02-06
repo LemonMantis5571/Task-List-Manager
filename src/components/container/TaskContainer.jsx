@@ -3,11 +3,10 @@ import Task from '../Task';
 import TaskForm from '../TaskForm';
 import TaskList from '../TaskList';
 
-let TodoId = 0
 
 
-const myContext = React.createContext(null);
-const dispatchActions = React.createContext(null);
+export const myContext = React.createContext(null);
+export const dispatchActions = React.createContext(null);
 const ToggleTODO = React.createContext(null);
 
 export function TaskContext() {
@@ -23,20 +22,12 @@ export function TaskFilterContext() {
 }
 
 
-function usePrevious(value) {
-    // The ref object is a generic container whose current property is mutable ...
-    // ... and can hold any value, similar to an instance property on a class
-    const ref = useRef();
-    // Store current value in ref
-    useEffect(() => {
-      ref.current = value;
-    }, [value]); // Only re-run if value changes
-    // Return previous value (happens before update in useEffect above)
-    return ref.current;
-  }
 
-const initialState = [];
-   
+
+let initialState = [];
+
+
+
 
 export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
@@ -48,15 +39,31 @@ export const SHOW_ALL = 'SHOW_ALL';
 
 const filterTask = (todos, filter) => {
 
+
     switch (filter) {
         case 'SHOW_ALL':
-            return todos.filter((todo) => todo);
+
+            return todos;
         case 'SHOW_ACTIVE':
+            
             return todos.filter((todo) => !todo.completed);
+
         case 'SHOW_COMPLETED':
+            
             return todos.filter((todo) => todo.completed);
         default:
             return todos;
+    }
+
+}
+
+const filterReducer = (filterstate, action) => {
+
+    switch (action.type) {
+        case SET_VISIBILITY_FILTER:
+            return filterTask(filterstate, action.payload.filter);
+        default:
+            return filterstate;
     }
 
 }
@@ -88,9 +95,8 @@ const TaskReducer = (state,action) => {
             } : task)
 
 
-        case SET_VISIBILITY_FILTER:
-                return filterTask(state, action.payload.filter)
-
+         case SET_VISIBILITY_FILTER:
+            return filterTask(state, action.payload.filter)
             
 
         default:
@@ -102,27 +108,27 @@ const TaskReducer = (state,action) => {
 
 
 
-const TaskContainer = () => {
-    const [state, dispatch] = useReducer(TaskReducer, initialState);
-
-    console.log(state); 
+const TaskContainer = ({children}) => {
+        const [state, dispatch] = useReducer(TaskReducer, initialState);
+        const [filterstate, filterdispatch] = useReducer(filterReducer, initialState);
 
     return (
-        <myContext.Provider value={state}>
-            <dispatchActions.Provider value={dispatch}>
-                <ToggleTODO.Provider value={state}>
-                    <div>
-
+        <myContext.Provider value={{state, filterstate}}>
+            <dispatchActions.Provider value={{dispatch,filterdispatch}}>
+                <ToggleTODO.Provider value={filterstate}>
+                    {children}
                         <div>
-                            <TaskList></TaskList>
-                            {/* <Task></Task> */}
-                        </div>
 
-                        <div>
-                        <TaskForm></TaskForm>
-                        </div>
+                            <div>
+                                <TaskList></TaskList>
+                                {/* <Task></Task> */}
+                            </div>
 
-                    </div>  
+                            <div>
+                            <TaskForm></TaskForm>
+                            </div>
+
+                        </div>  
                 </ToggleTODO.Provider>
             </dispatchActions.Provider>
         </myContext.Provider>

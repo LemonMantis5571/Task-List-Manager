@@ -1,11 +1,11 @@
-import React from 'react';
-import { DELETE_TASK, SET_VISIBILITY_FILTER, SET_VISIBILITY_FILTER_COMPLETED, TaskContext, TaskDispatchContext } from './container/TaskContainer';
+import React, {useContext} from 'react';
+import { DELETE_TASK, dispatchActions, myContext, SET_VISIBILITY_FILTER, TaskDispatchContext } from './container/TaskContainer';
 import Task from './Task';
 
 const TaskList = () => {
     
-    const tasks = TaskContext();
-    const dispatch = TaskDispatchContext();
+    const {state} = useContext(myContext);
+    const {dispatch, filterdispatch} = useContext(dispatchActions);
     return (
         <div>
             <div className='d-flex gap-5 align-items-center justify-content-center mb-3'>
@@ -14,7 +14,7 @@ const TaskList = () => {
                     {
                         type: SET_VISIBILITY_FILTER,
                         payload: {
-                            filter: 'SHOW_COMPLETED'
+                            filter: 'SHOW_COMPLETED',
                         }
                     })}>SHOW COMPLETE</button>
 
@@ -22,7 +22,7 @@ const TaskList = () => {
                     {
                         type: SET_VISIBILITY_FILTER,
                         payload: {
-                            filter: 'SHOW_ALL' 
+                            filter: 'SHOW_ALL',
                         }
                     }
                     )}>SHOW ALL</button>
@@ -38,7 +38,7 @@ const TaskList = () => {
             </div>
             
             <ul>
-                {tasks && tasks.map((task, index) => (
+                {state && state.map((task, index) => (
                     <div className='d-flex gap-5' key={index}>
                         <Task key={index} task={{...task}} id={index}>
                         </Task>

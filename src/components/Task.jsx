@@ -1,9 +1,9 @@
-import React from 'react';
-import { TaskContext, TaskDispatchContext, TOGGLE_COMPLETE } from './container/TaskContainer';
+import React, {useContext} from 'react';
+import { dispatchActions, TaskContext, TaskDispatchContext, TOGGLE_COMPLETE } from './container/TaskContainer';
 
 const Task = ({task, id}) => {
-    
-    const dispatch = TaskDispatchContext();
+
+    const {dispatch} = useContext(dispatchActions);
 
 
     return (
