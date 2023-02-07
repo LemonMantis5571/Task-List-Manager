@@ -1,25 +1,19 @@
-import React, {useReducer, useContext, useEffect,useRef, useState} from 'react';
-import Task from '../Task';
-import TaskForm from '../TaskForm';
+import React, {useReducer, useContext} from 'react';
 import TaskList from '../TaskList';
+import TaskForm from '../TaskForm';
+
 
 
 
 export const myContext = React.createContext(null);
 export const dispatchActions = React.createContext(null);
-const ToggleTODO = React.createContext(null);
 
-export function TaskContext() {
-    return useContext(myContext);
-}
+
 
 export function TaskDispatchContext () {
     return useContext(dispatchActions);
 }
 
-export function TaskFilterContext() {
-    return useContext(ToggleTODO);
-}
 
 
 
@@ -37,6 +31,12 @@ export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 export const SET_VISIBILITY_FILTER_ALL = 'SET_VISIBILITY_FILTER_ALL'
 export const SHOW_ALL = 'SHOW_ALL';
 
+/**
+ * The filterReducer function takes in two arguments, the filterstate and the action, and returns the
+ * filterstate if the action type is not SET_VISIBILITY_FILTER, otherwise it returns the filterTask
+ * function with the filterstate and the action payload filter as arguments.
+ * @returns The return value of the reducer is the new state.
+ */
 const filterTask = (todos, filter) => {
 
 
@@ -71,6 +71,9 @@ const filterReducer = (filterstate, action) => {
 }
 
 
+/* A reducer function that takes in two arguments, the state and the action, and returns the state if
+the action type is not ADD_TASK, DELETE_TASK, TOGGLE_COMPLETE, or SET_VISIBILITY_FILTER, otherwise
+it returns the appropriate function with the state and the action payload as arguments. */
 const TaskReducer = (state,action) => {
     switch (action.type) {
         case ADD_TASK:
@@ -112,25 +115,22 @@ const TaskReducer = (state,action) => {
 const TaskContainer = ({children}) => {
         const [state, dispatch] = useReducer(TaskReducer, initialState);
         const [filterstate, filterdispatch] = useReducer(filterReducer, initialFilterState);
-        console.log(state);
+ 
+
     return (
-        <myContext.Provider value={{state, filterstate}}>
-            <dispatchActions.Provider value={{dispatch,filterdispatch}}>
-                <ToggleTODO.Provider value={filterstate}>
-                    {children}
-                        <div>
+        <myContext.Provider value={{ state, filterstate }}>
+            <dispatchActions.Provider value={{ dispatch, filterdispatch }}>
+                <div>
 
-                            <div>
-                                <TaskList></TaskList>
-                                {/* <Task></Task> */}
-                            </div>
+                    <div>
+                        <TaskList></TaskList>
+                    </div>
 
-                            <div>
-                            <TaskForm></TaskForm>
-                            </div>
+                    <div>
+                        <TaskForm></TaskForm>
+                    </div>
 
-                        </div>  
-                </ToggleTODO.Provider>
+                </div>  
             </dispatchActions.Provider>
         </myContext.Provider>
     );
