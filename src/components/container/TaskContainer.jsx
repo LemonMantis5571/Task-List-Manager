@@ -25,7 +25,7 @@ export function TaskFilterContext() {
 
 
 let initialState = [];
-
+let initialFilterState = 'SHOW_ALL';
 
 
 
@@ -43,14 +43,16 @@ const filterTask = (todos, filter) => {
     switch (filter) {
         case 'SHOW_ALL':
 
-            return todos;
+            return 'SHOW_ALL';
+
         case 'SHOW_ACTIVE':
             
-            return todos.filter((todo) => !todo.completed);
+            return 'SHOW_ACTIVE'
 
         case 'SHOW_COMPLETED':
-            
-            return todos.filter((todo) => todo.completed);
+
+            return 'SHOW_COMPLETED'
+
         default:
             return todos;
     }
@@ -81,7 +83,6 @@ const TaskReducer = (state,action) => {
                     name : action.payload.name,
                     description: action.payload.description
                 }
-                
             ]
 
         case DELETE_TASK:
@@ -110,8 +111,8 @@ const TaskReducer = (state,action) => {
 
 const TaskContainer = ({children}) => {
         const [state, dispatch] = useReducer(TaskReducer, initialState);
-        const [filterstate, filterdispatch] = useReducer(filterReducer, initialState);
-
+        const [filterstate, filterdispatch] = useReducer(filterReducer, initialFilterState);
+        console.log(state);
     return (
         <myContext.Provider value={{state, filterstate}}>
             <dispatchActions.Provider value={{dispatch,filterdispatch}}>
