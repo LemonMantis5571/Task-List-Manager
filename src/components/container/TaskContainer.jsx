@@ -26,9 +26,7 @@ let initialFilterState = 'SHOW_ALL';
 export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
 export const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE';
-export const RESET = 'RESET'
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
-export const SET_VISIBILITY_FILTER_ALL = 'SET_VISIBILITY_FILTER_ALL'
 export const SHOW_ALL = 'SHOW_ALL';
 
 /**
