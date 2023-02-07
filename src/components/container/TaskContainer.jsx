@@ -110,7 +110,7 @@ const TaskReducer = (state,action) => {
 
 
 
-const TaskContainer = ({children}) => {
+const TaskContainer = () => {
         const [state, dispatch] = useReducer(TaskReducer, initialState);
         const [filterstate, filterdispatch] = useReducer(filterReducer, initialFilterState);
  
