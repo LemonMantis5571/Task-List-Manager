@@ -15,18 +15,27 @@ const TaskList = () => {
                 <button className='btn btn-primary' onClick={() => filterdispatch(
                     {
                         type: SET_VISIBILITY_FILTER,
+                        payload: {
+                            filter: 'SHOW_COMPLETED',
+                        }
 
                     })}>SHOW COMPLETE</button>
 
                 <button className='btn btn-primary' onClick={() => filterdispatch(
                     {
                         type: SET_VISIBILITY_FILTER,
+                        payload: {
+                            filter: 'SHOW_ALL',
+                        }
                     }
                     )}>SHOW ALL</button>
 
                 <button className='btn btn-primary' onClick={() => filterdispatch(
                     {
                         type: SET_VISIBILITY_FILTER,
+                        payload: {
+                            filter: 'SHOW_ACTIVE',
+                        }
                     }
                     )}>SHOW ACTIVE</button>
             </div>
