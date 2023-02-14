@@ -87,7 +87,7 @@ const TaskReducer = (state,action) => {
             ]
 
         case DELETE_TASK:
-            return state.filter((state, index) =>  index !== action.index);
+            return state.filter((state, index) =>  index !== action.id);
                 
     
         case TOGGLE_COMPLETE:
@@ -110,7 +110,7 @@ const TaskReducer = (state,action) => {
 
 
 
-const TaskContainer = () => {
+const TaskContainer = (props) => {
         const [state, dispatch] = useReducer(TaskReducer, initialState);
         const [filterstate, filterdispatch] = useReducer(filterReducer, initialFilterState);
  
@@ -118,17 +118,15 @@ const TaskContainer = () => {
     return (
         <myContext.Provider value={{ state, filterstate }}>
             <dispatchActions.Provider value={{ dispatch, filterdispatch }}>
-                <div>
-
+                {props.children}
+                {/* <div>
                     <div>
                         <TaskList></TaskList>
                     </div>
-
                     <div>
                         <TaskForm></TaskForm>
                     </div>
-
-                </div>  
+                </div>   */}
             </dispatchActions.Provider>
         </myContext.Provider>
     );

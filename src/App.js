@@ -1,16 +1,17 @@
 
 import './App.css';
-import TaskContainer from './components/container/TaskContainer';
+import TaskNavBar from './Routes/TaskNavBar';
+import TaskContainer, { myContext } from './components/container/TaskContainer';
 
 function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <TaskContainer>
-
-        </TaskContainer>
-      </header>
+      <TaskContainer>
+        <TaskNavBar>
+        </TaskNavBar>
+      </TaskContainer>
+      
     </div>
   );
 }

@@ -1,33 +1,22 @@
 import React, {useContext} from 'react';
-import { dispatchActions, TaskContext, TaskDispatchContext, TOGGLE_COMPLETE } from './container/TaskContainer';
+import { DELETE_TASK, dispatchActions, TOGGLE_COMPLETE } from './container/TaskContainer';
 
 const Task = ({task, id}) => {
 
     const {dispatch} = useContext(dispatchActions);
 
 
-    return (
-        <div>
-  
-        {task ? (
-            <div> 
-                <li onClick={() => dispatch({type: TOGGLE_COMPLETE, payload: { id: id} })} style= {
-                    {
-                        textDecoration: task?.completed ? 'line-through': 'none',
-                        textDecorationColor: task?.completed ? 'green' : 'none',
-                        color: task?.completed ? 'green' : 'white'  
-                    }}>
-                    <div className='d-flex gap-3'>
-                        <p>ID: {task?.id}</p>
-                        <p>Name: {task?.name}</p>
-                        <p>Description:{task?.description}</p>
-
-                    </div>
-                </li>
-            </div>
-        ): null}
-
-        </div>
+    return (    
+        <tr onClick={() => dispatch({type: TOGGLE_COMPLETE, payload: {id: id}})} 
+        className = {task.completed ? 'table-success' : 'table-danger'}>
+        <th scope='row'>{task.id}</th>
+        <td>{task.name}</td>
+        <td>{task.description}</td>
+        <td>
+            {task.completed ? 'Completed' : 'Incompleted'}
+        </td>
+        <td><button className='btn btn-primary' onClick={() => dispatch({type: DELETE_TASK, id})}>DELETE TASK</button></td>
+    </tr>
     );
 }
 

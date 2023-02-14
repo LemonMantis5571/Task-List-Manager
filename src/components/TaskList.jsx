@@ -39,19 +39,32 @@ const TaskList = () => {
                     }
                     )}>SHOW ACTIVE</button>
             </div>
-            <ul>
-                {state.map((task, index) => {
-                    if ((filterstate === 'SHOW_ALL') || (filterstate === 'SHOW_COMPLETED' && task.completed) || (filterstate === 'SHOW_ACTIVE' && !task.completed)) {
-                        return (
-                                <div className='d-flex gap-5' key={index}>
-                                <Task key={index} task={task} id={index} />
-                                <button className='btn btn-primary' onClick={() => dispatch({type: DELETE_TASK, index})}>DELETE TASK</button>
-                                </div>
-                                );
-                    }
-                        return null;
-                    })}
-            </ul>
+            <table className='table table-dark table-striped'>
+                <thead>
+                    <tr>
+                        <th scope='col'>#</th>
+                        <th scope='col'>Task Name</th>
+                        <th scope='col'>Details</th>
+                        <th scope='col'>State</th>
+                        <th scope='col'>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {state.map((task, index) => {
+                        if ((filterstate === 'SHOW_ALL') || (filterstate === 'SHOW_COMPLETED' && task.completed) || (filterstate === 'SHOW_ACTIVE' && !task.completed)) {
+                            return (
+                                    
+                                        <Task key={index} task={task} id={index}>
+                                        </Task>
+                                        /* <button className='btn btn-primary' onClick={() => dispatch({type: DELETE_TASK, index})}>DELETE TASK</button> */
+                                    );
+                        }
+                            return null;
+                        })}
+                </tbody>
+                
+                
+            </table>
         </div>
     );
 }
