@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #323232 !important;
 }
 
 code {
@@ -17,6 +18,10 @@ code {
 .TD-Generator{
   display: flex;
   width: 100%;
+}
+
+.form-div {
+  height: 90vh
 }
 
 .form-parent{

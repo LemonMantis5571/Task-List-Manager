@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { DELETE_TASK, dispatchActions, myContext, SET_VISIBILITY_FILTER} from './container/TaskContainer';
+import {dispatchActions, myContext, SET_VISIBILITY_FILTER} from './container/TaskContainer';
 import Task from './Task';
 
 const TaskList = () => {
@@ -10,8 +10,7 @@ const TaskList = () => {
 
     return (
         <div>
-            <div className='d-flex gap-5 align-items-center justify-content-center mb-3'>
-                <h1>Your Tasks</h1>
+            <div className='d-flex gap-5 align-items-center justify-content-center mb-3 mt-3'>
                 <button className='btn btn-primary' onClick={() => filterdispatch(
                     {
                         type: SET_VISIBILITY_FILTER,
@@ -39,7 +38,7 @@ const TaskList = () => {
                     }
                     )}>SHOW ACTIVE</button>
             </div>
-            <table className='table table-dark table-striped'>
+            <table className='table table-dark table-striped w-50 m-auto'>
                 <thead>
                     <tr>
                         <th scope='col'>#</th>
