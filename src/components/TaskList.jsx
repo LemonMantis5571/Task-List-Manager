@@ -45,6 +45,7 @@ const TaskList = () => {
                         <th scope='col'>Task Name</th>
                         <th scope='col'>Details</th>
                         <th scope='col'>State</th>
+                        <th scope='col'>Priority</th>
                         <th scope='col'>Actions</th>
                     </tr>
                 </thead>
