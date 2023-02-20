@@ -1,9 +1,8 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import { ADD_TASK,  TaskDispatchContext} from './container/TaskContainer';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
-import { LEVELS } from '../models/LEVELS.enum';
-import DatePicker from './DateHandle/DatePicker';
+import { LEVELS } from '../models/LEVELS.enum';;
 
     
 
@@ -54,7 +53,7 @@ const TaskForm = () => {
             initialValues={initialValues}
             validationSchema={taskSchema}
             onSubmit={async (values, {resetForm}) => {
-                await new Promise((r) => setTimeout(r, 500));
+                await new Promise((r) => setTimeout(r, 1000));
                 submit(values);
                 resetForm();
             }}>
@@ -63,20 +62,20 @@ const TaskForm = () => {
                 <div className='d-flex justify-content-center align-items-center w-100 form-div'>
                     <Form className='form-parent d-flex flex-column align-items-center justify-content-center align-self'>
                         <div className='mb-3'>
-                            <label htmlFor="name" className='form-label badge bg-primary fs-5'>Task name</label>
+                            <label htmlFor="name" className='form-label badge fs-5'>Task name</label>
                             <Field id="name" name="name"  type="text" placeholder="TaskNameExample" className='form-control' />
                                 {/* Mensaje de error en taskName */}
                             <ErrorMessage name='name' component='div' className='ErrorMessage bg-danger'></ErrorMessage>
                         </div>
                         <div className='mb-3'>
-                            <label htmlFor="description" className='form-label badge bg-primary fs-5'>Description</label>
+                            <label htmlFor="description" className='form-label badge fs-5'>Description</label>
                             <Field id="description" name="description"  type="description" placeholder="TaskDescriptionExample" className='form-control'/>
                                     {/* Mensaje de error en description */}
                             <ErrorMessage name='description' component='div' className='ErrorMessage bg-danger'></ErrorMessage>
                         </div>
 
                         <div className='mb-3'>
-                            <label htmlFor="level">Select Priority</label>
+                            <label htmlFor="level" className='form-label badge fs-5'>Select Priority</label>
                             <Field component="select" name="level" id="level" className="form-select">
                                     <option value={LEVELS.normal}>Normal</option>
                                     <option value={LEVELS.urgent}>Urgent</option>
@@ -86,7 +85,7 @@ const TaskForm = () => {
                         </div>
                         <div>
                             <button type="submit" className='btn btn-success'>Create Task</button>
-                                {isSubmitting ? (<p style={{color: 'white'}}>Submiting Task...</p>) : null}
+                                {isSubmitting ? (<div className='ErrorMessage bg-success'>Task created sucessfully </div>) : null}
                         </div>
                     </Form>
                 </div>)}
