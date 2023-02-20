@@ -4,7 +4,7 @@ import { DELETE_TASK, dispatchActions, TOGGLE_COMPLETE } from './container/TaskC
 const Task = ({task, id}) => {
 
     const {dispatch} = useContext(dispatchActions);
-
+    console.log(task.date);
 
     return (    
         <tr onClick={() => dispatch({type: TOGGLE_COMPLETE, payload: {id: id}})} className = {task.completed ? 'table-success' : 'table-danger'}>
@@ -16,6 +16,8 @@ const Task = ({task, id}) => {
         </td>
         <td>{task.priority}</td>
         <td><button className='btn btn-danger' onClick={() => dispatch({type: DELETE_TASK, id})}>DELETE TASK</button></td>
+        <td>{task.date.toString()}</td>
+
     </tr>
     );
 }

@@ -83,7 +83,8 @@ const TaskReducer = (state,action) => {
                     completed: false,
                     name : action.payload.name,
                     description: action.payload.description,
-                    priority: action.payload.priority
+                    priority: action.payload.priority,
+                    date: action.payload.date
                 }
             ]
 
