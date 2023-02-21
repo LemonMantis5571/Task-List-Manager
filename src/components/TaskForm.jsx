@@ -3,7 +3,6 @@ import { ADD_TASK,  TaskDispatchContext} from './container/TaskContainer';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import { LEVELS } from '../models/LEVELS.enum';
-import "react-datepicker/dist/react-datepicker.css";
 import { TextField } from '@mui/material';
 import { withStyles } from '@material-ui/core/styles';
 

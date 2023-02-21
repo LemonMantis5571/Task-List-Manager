@@ -22,7 +22,7 @@ const TaskList = () => {
                         }
 
                     })}>SHOW COMPLETE 
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {completedTasks > 0 && `${completedTasks}`}
                         </span>
                     </button>
@@ -47,7 +47,7 @@ const TaskList = () => {
                         }
                     }
                     )}>SHOW ACTIVE 
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {activeTasks > 0 && (`${activeTasks}`)}
                         </span></button>
             </div>

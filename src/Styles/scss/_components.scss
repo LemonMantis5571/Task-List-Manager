@@ -1,0 +1,43 @@
+@mixin btn-base {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    
+}
+
+
+@mixin btn-sm-modify {
+    font-size: 1rem;
+    padding: 0.1rem 1rem;
+}
+
+
+
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$color-main: #1a81f8;
+$color-footer: #f4f8fe;
+
+.btn-main {
+    @include btn-base();
+    background-color: $color-main;
+    color: white;
+    border: solid 1px $color-main;
+
+    &:hover {
+        background-color: white;
+        color: $color-main;
+    }
+
+    &-s{
+        @extend .btn-main;
+        @include btn-sm-modify();
+    }
+}
