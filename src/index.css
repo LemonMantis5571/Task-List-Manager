@@ -14,12 +14,6 @@ code {
 }
 
 
-
-.TD-Generator{
-  display: flex;
-  width: 100%;
-}
-
 .form-div {
   height: 90vh
 }
@@ -36,6 +30,14 @@ code {
   color: white;
 }
 
+#date{
+  color: white;
+  border-color: white;
+}
+
+#date-label{
+  color: white;
+}
 
 
 .form-parent .form-control{ 
@@ -43,15 +45,14 @@ code {
   height: 3rem;
 }
 
+.btn btn-danger {
+  padding: 0;
+}
+
 .ErrorMessage {
   margin-top: 0.4rem;
   color: white;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
   border-radius: 0.375rem;
-}
-
-
-.datepicker react-datepicker-wrapper {
-  width: 100%;
 }

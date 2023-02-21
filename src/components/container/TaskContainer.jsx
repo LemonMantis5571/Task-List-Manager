@@ -93,7 +93,7 @@ const TaskReducer = (state,action) => {
                 
     
         case TOGGLE_COMPLETE:
-            return state.map((task, index) => (task.id === action.payload.id) ? {
+            return state.map((task, index) => (task.id  === action.payload.id ) ? {
                 ...task,
                 completed: !task.completed
             } : task)

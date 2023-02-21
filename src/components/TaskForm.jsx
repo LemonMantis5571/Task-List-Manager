@@ -1,23 +1,49 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ADD_TASK,  TaskDispatchContext} from './container/TaskContainer';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import { LEVELS } from '../models/LEVELS.enum';
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { TextField } from '@mui/material';
+import { withStyles } from '@material-ui/core/styles';
 
+/* A way to customize the TextField component from Material UI. */
+const CssTextField = withStyles(
+    {
+        root: {
+          '& label.Mui-focused': {
+            color: 'white',
+          },
+          '& .MuiInput-underline:after': {
+            borderBottomColor: 'white',
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'white',
+            },
+            '&:hover fieldset': {
+              borderColor: 'white',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'white',
+            },
+          },
+        },
+    })(TextField);
 
-
-
-    
 
 const TaskForm = () => {
+
     const initialValues = { 
         name: '',
         description: '',
         level: LEVELS.normal,
         date: null
     }
+
+    const [date, setDate] = useState(initialValues.date);
+
+    const {dispatch} = TaskDispatchContext();
 
     const taskSchema = Yup.object().shape(
         {
@@ -38,18 +64,22 @@ const TaskForm = () => {
         
     )
 
-    const {dispatch} = TaskDispatchContext();
+   
 
     
+/**
+ * When the user clicks the submit button, the values from the form are passed to the submit function,
+ * which then dispatches an action to the reducer, which then updates the state.
+ */
     const submit = (values) => {
-        console.log(values);
+       
         dispatch({
             type: ADD_TASK,
             payload: {
                 name: values.name,
                 description: values.description,
                 priority: values.level,
-                date: values.date
+                date: date.replace('T', ' ')
             }
         })
     }
@@ -61,7 +91,7 @@ const TaskForm = () => {
             validationSchema={taskSchema}
             enableReinitialize
             onSubmit={async (values, {resetForm}) => {
-                await new Promise((r) => setTimeout(r, 1000));
+                await new Promise((r) => setTimeout(r, 500));
                 submit(values);
                 resetForm();
             }}>
@@ -93,15 +123,25 @@ const TaskForm = () => {
                         </div>
                         <div className='mb-3 datepicker'>
                             <label htmlFor="date" className='form-label badge fs-5'>Select Expiration Date</label>
-                            <DatePicker showTimeSelect selected={values.date} name='date' dateFormat="Pp"/>
+                            {/* A way to customize the TextField component from Material UI. */}
+                            <CssTextField
+                                    id="date"
+                                    variant='outlined'
+                                    name='date'
+                                    className='mt-3'
+                                    label='Input Date and Hour'
+                                    type="datetime-local"
+                                    defaultValue={date}
+                                    sx={{ width: 250, borderColor: 'white' }}
+                                    InputLabelProps={{
+                                    shrink: true,}}
+                                    onChange={(e) => setDate(e.target.value)}>
+                            </CssTextField>
 
-                            {/* <TextField  type={'datetime-local'} name='date' id='date' 
-                            InputProps={{startAdornment: <InputAdornment sx={{backgroundColor: 'white'}}></InputAdornment>}}></TextField> */}
-                            {/* <DatePicker name='date' showTimeSelect dateFormat={'Pp'} className='position-relative'></DatePicker> */}
                         </div>
                         <div>
                             <button type="submit" className='btn btn-success'>Create Task</button>
-                                {isSubmitting ? (<div className='ErrorMessage bg-success'>Task created sucessfully </div>) : null}
+                                {isSubmitting ? (<div className='ErrorMessage bg-success p-3'>Task created sucessfully </div>) : null}
                         </div>
                     </Form>
                 </div>)}
