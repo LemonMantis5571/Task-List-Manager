@@ -41,7 +41,8 @@ body {
 }
 .sec-home .home-cta .home-description {
   color: white;
-  max-width: 300px;
+  max-width: 600px;
+  font-weight: 200;
   display: block;
 }
 .sec-home .home-cta .lead-magnet {
@@ -61,25 +62,23 @@ body {
   margin: auto;
   padding: 3rem;
 }
+.sec-features .home-cta {
+  width: 100%;
+}
 .sec-features .home-cta .cta-text {
   color: #1a81f8;
   cursor: pointer;
 }
 .sec-features .home-cta .home-title {
   color: black;
-  width: 20rem;
-  font-size: 3rem;
+  width: 30rem;
+  font-size: 2.5rem;
 }
-.sec-features .home-cta .home-description {
-  color: black;
-  max-width: 300px;
-  display: block;
+.sec-features .home-cta .item {
+  width: 200px;
 }
-.sec-features .home-cta .lead-magnet {
-  width: 600px;
-}
-.sec-features .home-cta .lead-magnet .input-col {
-  max-width: 150px;
+.sec-features .home-cta .item i {
+  font-size: x-large;
 }
 
 .sec-keys {
@@ -102,7 +101,7 @@ body {
 }
 .sec-keys .home-cta .home-description {
   color: white;
-  max-width: 300px;
+  max-width: 600px;
   display: block;
 }
 .sec-keys .home-cta .lead-magnet {

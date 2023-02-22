@@ -27,7 +27,8 @@
           
           .home-description {
             color: white;   
-            max-width: 300px;
+            max-width: 600px;
+            font-weight: 200;
             display: block;
           }
     
@@ -50,27 +51,22 @@
     @include section-display();
 
     .home-cta {
+        width: 100%;
         .cta-text{
             color: components.$color-main;
             cursor: pointer;
         }
           
-          .home-title {
+        .home-title {
             color: black;
-            width: 20rem;
-            font-size: 3rem;
-          }
+            width: 30rem;
+            font-size: 2.5rem;
+        }
           
-          .home-description {
-            color: black;   
-            max-width: 300px;
-            display: block;
-          }
-    
-        .lead-magnet {
-            width: 600px;
-            .input-col {
-                max-width: 150px;
+        .item {
+            width: 200px;
+            i{
+                font-size: x-large;
             }
         }
     }
@@ -99,7 +95,7 @@
           
           .home-description {
             color: white;   
-            max-width: 300px;
+            max-width: 600px;
             display: block;
           }
     
