@@ -8,7 +8,7 @@ import HomePage from '../Pages/HomePage';
 const TaskNavBar = () => {
     return (
      <Router>            
-        <nav className='navbar justify-content-center navbar-expand-md bg-dark' data-bs-theme="dark">
+        <nav className='navbar justify-content-center navbar-expand-md bg-dark w-100' data-bs-theme="dark">
             <div className="container-fluid">
                 <Link className="navbar-brand" href='/'>Task-Manager</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

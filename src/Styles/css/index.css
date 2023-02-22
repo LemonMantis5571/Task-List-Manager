@@ -27,7 +27,6 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 992px;
   margin: auto;
   padding: 3rem;
 }
@@ -49,6 +48,67 @@ body {
   width: 600px;
 }
 .sec-home .home-cta .lead-magnet .input-col {
+  max-width: 150px;
+}
+
+.sec-features {
+  display: flex;
+  height: 500px;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 100%;
+  margin: auto;
+  padding: 3rem;
+}
+.sec-features .home-cta .cta-text {
+  color: #1a81f8;
+  cursor: pointer;
+}
+.sec-features .home-cta .home-title {
+  color: black;
+  width: 20rem;
+  font-size: 3rem;
+}
+.sec-features .home-cta .home-description {
+  color: black;
+  max-width: 300px;
+  display: block;
+}
+.sec-features .home-cta .lead-magnet {
+  width: 600px;
+}
+.sec-features .home-cta .lead-magnet .input-col {
+  max-width: 150px;
+}
+
+.sec-keys {
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+  padding: 3rem;
+}
+.sec-keys .home-cta .cta-text {
+  color: #1a81f8;
+  cursor: pointer;
+}
+.sec-keys .home-cta .home-title {
+  color: white;
+  width: 20rem;
+  font-size: 3rem;
+}
+.sec-keys .home-cta .home-description {
+  color: white;
+  max-width: 300px;
+  display: block;
+}
+.sec-keys .home-cta .lead-magnet {
+  width: 600px;
+}
+.sec-keys .home-cta .lead-magnet .input-col {
   max-width: 150px;
 }
 

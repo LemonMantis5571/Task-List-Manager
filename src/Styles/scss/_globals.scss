@@ -2,13 +2,84 @@
 
 @mixin section-display {
     width: 100%;
-    max-width: 992px;
     margin: auto;
     padding: 3rem;
     
 }
 /** HomePage css **/
 .sec-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include section-display();
+
+    .home-cta {
+        .cta-text{
+            color: components.$color-main;
+            cursor: pointer;
+        }
+          
+          .home-title {
+            color: white;
+            width: 20rem;
+            font-size: 3rem;
+          }
+          
+          .home-description {
+            color: white;   
+            max-width: 300px;
+            display: block;
+          }
+    
+        .lead-magnet {
+            width: 600px;
+            .input-col {
+                max-width: 150px;
+            }
+        }
+    }
+
+}
+
+.sec-features {
+    display: flex;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    @include section-display();
+
+    .home-cta {
+        .cta-text{
+            color: components.$color-main;
+            cursor: pointer;
+        }
+          
+          .home-title {
+            color: black;
+            width: 20rem;
+            font-size: 3rem;
+          }
+          
+          .home-description {
+            color: black;   
+            max-width: 300px;
+            display: block;
+          }
+    
+        .lead-magnet {
+            width: 600px;
+            .input-col {
+                max-width: 150px;
+            }
+        }
+    }
+
+}
+
+
+.sec-keys {
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
