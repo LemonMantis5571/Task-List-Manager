@@ -30,13 +30,9 @@ export const createUser = async(user, password) => {
         password: password
     }
 
-    try {
-        const response = await axiosConfig.post('users/create', body);
-        return response;
-        
-    } catch (error) {
-        console.log(error);
-    }
+    
+    const response = await axiosConfig.post('users/create', body);
+    return response;
 
 }
 

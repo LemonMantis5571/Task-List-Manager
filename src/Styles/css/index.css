@@ -145,4 +145,26 @@ body {
   border-radius: 0.375rem;
 }
 
+.login-form {
+  width: 70%;
+  height: 90%;
+}
+
+.login-container {
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.parent-login-div {
+  background-color: white;
+}
+
+.img-div {
+  background-color: black;
+}
+
+.input-with-icon {
+  width: calc(100% - 38px);
+}
+
 /*# sourceMappingURL=index.css.map */

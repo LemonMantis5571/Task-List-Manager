@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
-import LoginForm from '../components/login/LoginForm';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import HomePage from '../Pages/HomePage';
+import LoginPage from '../Pages/loginPage';
+import RegisterPage from '../Pages/registerPage';
 
 const TaskNavBar = () => {
     return (
@@ -36,7 +37,7 @@ const TaskNavBar = () => {
                     </i>
 
                     <ul className="dropdown-menu dropdown-menu-end">
-                        <li><Link className="dropdown-item" href="/">Create Account</Link></li>
+                        <li><Link className="dropdown-item" to='/register'>Create Account</Link></li>
                         <li><Link className="dropdown-item" to="/login">Login</Link></li>
                         <li><hr className="dropdown-divider"/></li>
                         <li><Link className="dropdown-item" href="/">Logout</Link></li>
@@ -46,7 +47,8 @@ const TaskNavBar = () => {
         </nav>
             <Routes>
                 <Route exact path='/' element={<HomePage></HomePage>}></Route>
-                <Route path='/login' element={<LoginForm></LoginForm>}></Route>
+                <Route path='/login' element={<LoginPage></LoginPage>}></Route>
+                <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
                 <Route  path='/task-form' element={<TaskForm></TaskForm>}></Route>
                 <Route  path='/task-list' element={<TaskList></TaskList>}></Route>
             </Routes>
