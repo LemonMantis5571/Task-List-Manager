@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
+import LoginForm from '../components/login/LoginForm';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import HomePage from '../Pages/HomePage';
 
-
 const TaskNavBar = () => {
     return (
      <Router>            
-        <nav className='navbar justify-content-center navbar-expand-md bg-dark w-100' data-bs-theme="dark">
+        <nav className='navbar justify-content-center navbar-expand-md bg-dark' data-bs-theme="dark">
             <div className="container-fluid">
                 <Link className="navbar-brand" href='/'>Task-Manager</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@ const TaskNavBar = () => {
 
                     <ul className="dropdown-menu dropdown-menu-end">
                         <li><Link className="dropdown-item" href="/">Create Account</Link></li>
-                        <li><Link className="dropdown-item" href="/">Login</Link></li>
+                        <li><Link className="dropdown-item" to="/login">Login</Link></li>
                         <li><hr className="dropdown-divider"/></li>
                         <li><Link className="dropdown-item" href="/">Logout</Link></li>
                     </ul>
@@ -46,6 +46,7 @@ const TaskNavBar = () => {
         </nav>
             <Routes>
                 <Route exact path='/' element={<HomePage></HomePage>}></Route>
+                <Route path='/login' element={<LoginForm></LoginForm>}></Route>
                 <Route  path='/task-form' element={<TaskForm></TaskForm>}></Route>
                 <Route  path='/task-list' element={<TaskList></TaskList>}></Route>
             </Routes>

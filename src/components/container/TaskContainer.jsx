@@ -1,6 +1,5 @@
 import React, {useReducer, useContext} from 'react';
-import TaskList from '../TaskList';
-import TaskForm from '../TaskForm';
+
 
 
 
@@ -121,14 +120,6 @@ const TaskContainer = (props) => {
         <myContext.Provider value={{ state, filterstate }}>
             <dispatchActions.Provider value={{ dispatch, filterdispatch }}>
                 {props.children}
-                {/* <div>
-                    <div>
-                        <TaskList></TaskList>
-                    </div>
-                    <div>
-                        <TaskForm></TaskForm>
-                    </div>
-                </div>   */}
             </dispatchActions.Provider>
         </myContext.Provider>
     );

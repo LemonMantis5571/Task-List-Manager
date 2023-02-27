@@ -44,6 +44,7 @@ const TaskForm = () => {
 
     const {dispatch} = TaskDispatchContext();
 
+/* A validation schema for the form. */
     const taskSchema = Yup.object().shape(
         {
             name: Yup.string().min(2, 'Too Short')
@@ -71,7 +72,7 @@ const TaskForm = () => {
  * which then dispatches an action to the reducer, which then updates the state.
  */
     const submit = (values) => {
-       
+        console.log(typeof(date));
         dispatch({
             type: ADD_TASK,
             payload: {
@@ -144,25 +145,7 @@ const TaskForm = () => {
                         </div>
                     </Form>
                 </div>)}
-                
-
         </Formik>
-                    
-
-            
-                {/* <form onSubmit={submit}>
-                            <input 
-                            type='text'
-                            placeholder='Task Name'
-                            ref={nameRef}
-                            />
-                            
-                            <input 
-                            type='text'
-                            placeholder='description'
-                            ref={descriptionRef}/>
-                            <button type='submit'>Create Task</button>
-                        </form> */}
     </div>
     );
 }

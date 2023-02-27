@@ -141,8 +141,7 @@ body {
 .ErrorMessage {
   margin-top: 0.4rem;
   color: white;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
+  padding: 0.4rem;
   border-radius: 0.375rem;
 }
 
