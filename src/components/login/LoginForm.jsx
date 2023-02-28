@@ -1,10 +1,10 @@
 import React, {useContext, useState} from 'react';
-import { loginUser } from '../../services/users.service';
+import { getUser, loginUser } from '../../services/users.service';
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup';
 import loginIMG from '../../assets/images/login.png';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
-import { loginContext, SUCESS } from './loginReducer';
+import { LOGIN, loginContext, SUCESS } from './loginReducer';
 
 const initialvalues = {
     username: '',
@@ -18,10 +18,8 @@ const initialvalues = {
 const loginSchema = Yup.object().shape(
 
     {
-        username: Yup.string().required('Username is required').min(2, 'Too Short')
-        .max(30, 'Too Long'),
-        password: Yup.string().required('Password is required').min(2, 'Too Short')
-        .max(30, 'Too Long'),
+        username: Yup.string().required('Username is required'),
+        password: Yup.string().required('Password is required'),
     }
 )
 
@@ -55,7 +53,14 @@ const LoginForm = () => {
                         if (response.status === 200) {
                             setSuccessMessage('LOGIN SUCCESSFUL');
                             loginDispatch({type: SUCESS});
+                            
+                            getUser().then((response) => {
+                                loginDispatch({type: LOGIN, payload: {id: response.data.id, user: response.data.user}});
+                            }).catch((error) => {
+                                console.log(error.response);
+                            })
 
+                            // type: TOGGLE_COMPLETE, payload: {id: id}
                             clearMessages();
 
                             setTimeout(() => {

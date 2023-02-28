@@ -149,22 +149,15 @@ body {
   width: 70%;
   height: 90%;
 }
-
-.login-container {
+.login-form .login-container {
   overflow: hidden;
   border-radius: 1rem;
 }
-
-.parent-login-div {
+.login-form .login-container .parent-login-div {
   background-color: white;
 }
-
-.img-div {
+.login-form .login-container .img-div {
   background-color: black;
-}
-
-.input-with-icon {
-  width: calc(100% - 38px);
 }
 
 /*# sourceMappingURL=index.css.map */

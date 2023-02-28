@@ -2,8 +2,6 @@ import React, {useReducer} from 'react';
 
 export const loginContext = React.createContext(null);
 export const initialState = {
-    username: '',
-    password: '',
     loggedIn: false
 
 }
@@ -21,7 +19,7 @@ const loginReducer = (state, action) => {
            return {
                 ...state,
                 id: action.payload.id,
-                username: action.payload.username,
+                user: action.payload.user,
                 
            }
         

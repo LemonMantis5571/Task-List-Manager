@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import { createUser } from '../../services/users.service';
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup';
-import loginIMG from '../../assets/images/login.png';
+import registerIMG from '../../assets/images/register.png';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import { loginContext, SUCESS } from './loginReducer';
 
@@ -87,7 +87,7 @@ const RegisterForm = () => {
                         <Form className='login-form d-flex flex-column gap-3 justify-content-center align-items-center' name='form'>
                             <div className='d-flex w-100 h-100 login-container'>
                                 <div className='w-100 h-100 img-div'>
-                                    <img src={loginIMG} alt='loginVector'></img>
+                                    <img src={registerIMG} alt='registerVector'></img>
                                 </div>
                                 <div className='h-100 w-75 d-flex flex-column justify-content-center align-items-center parent-login-div'>
                                     <h6 className='display-6 fw-bold mb-3'> Register</h6>
