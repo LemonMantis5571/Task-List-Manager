@@ -27,6 +27,8 @@ export const DELETE_TASK = 'DELETE_TASK';
 export const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 export const SHOW_ALL = 'SHOW_ALL';
+export const FETCH_TASKS_SUCCESS = 'FETCH_TASKS_SUCCESS';
+
 
 /**
  * The filterReducer function takes in two arguments, the filterstate and the action, and returns the
@@ -98,9 +100,22 @@ const TaskReducer = (state,action) => {
             } : task)
 
 
-         case SET_VISIBILITY_FILTER:
+        case SET_VISIBILITY_FILTER:
             return filterTask(state, action.payload.filter)
             
+
+        case FETCH_TASKS_SUCCESS:
+            return [
+                ...state,
+                ...action.payload.mappedData.map(data => ({
+                    id: data.id,
+                    completed: data.completed,
+                    name: data.name,
+                    description: data.description,
+                    priority: data.priority,
+                    date: data.date,
+                  })),
+            ]
 
         default:
             return state;
@@ -114,7 +129,7 @@ const TaskReducer = (state,action) => {
 const TaskContainer = (props) => {
         const [state, dispatch] = useReducer(TaskReducer, initialState);
         const [filterstate, filterdispatch] = useReducer(filterReducer, initialFilterState);
- 
+
 
     return (
         <myContext.Provider value={{ state, filterstate }}>

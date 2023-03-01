@@ -1,14 +1,50 @@
-import React, {useContext} from 'react';
-import {dispatchActions, myContext, SET_VISIBILITY_FILTER} from './container/TaskContainer';
+import React, {useContext, useEffect} from 'react';
+import { getUserTasks } from '../services/tasks.service';
+import {dispatchActions, myContext, SET_VISIBILITY_FILTER, FETCH_TASKS_SUCCESS, ADD_TASK} from './container/TaskContainer';
 import Task from './Task';
 
+
+
 const TaskList = () => {
+    
     
 /* Destructuring the state and filterstate from the context. */
     const {state,filterstate} = useContext(myContext);
     const {dispatch, filterdispatch} = useContext(dispatchActions);
     const completedTasks = state.filter(task => task.completed).length;
     const activeTasks = state.filter(task => !task.completed).length;
+
+
+
+    useEffect(() => {
+        getUserTasks().then((response) => {
+            const mappedData = response.data.map(task => {
+                return {
+                    id: task.id,
+                    completed: task.is_completed,
+                    name: task.title,
+                    description: task.description,
+                    priority: task.priority,
+                    date: task.expires
+                }
+            });
+            console.log(mappedData.id);
+            dispatch({type: FETCH_TASKS_SUCCESS, payload: {
+                    id: mappedData.id,
+                    completed: mappedData.is_completed,
+                    name: mappedData.title,
+                    description: mappedData.description,
+                    priority: mappedData.priority,
+                    date: mappedData.expires
+            }});
+
+        }).catch((error) => {
+            console.log(error);
+        });
+    }, [dispatch]); 
+
+    console.log(state);
+      
 
     return (
         /* A button group that filters the tasks. */
@@ -35,7 +71,7 @@ const TaskList = () => {
                         }
                     }
                     )}>SHOW ALL 
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {state.length}
                         </span></button>
 
@@ -74,8 +110,10 @@ const TaskList = () => {
                                         </Task>
                                         
                                     );
-                        }
+                        }else {
                             return null;
+                        }
+
                         })}
                 </tbody>
             </table>

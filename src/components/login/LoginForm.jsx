@@ -12,7 +12,6 @@ const initialvalues = {
     password: '',
 
 }
-
 /**
  * This function takes a message as an argument and returns a toast.loading(message) function.
  * @returns A toast object.
@@ -64,8 +63,6 @@ const loginSchema = Yup.object().shape(
     }
 )
 
-
-
 const LoginForm = () => {
     const {loginState, loginDispatch} = useContext(loginContext);
     const Navigate = useNavigate();
@@ -77,9 +74,11 @@ const LoginForm = () => {
             initialValues = { initialvalues }
             validationSchema = { loginSchema }
             onSubmit={async (values, {resetForm}) => {
+
                 await new Promise((r) => setTimeout(r, 1000));
                 localStorage.removeItem('token');
-                notifyLoading('Login in...')
+                notifyLoading('Login in...');
+
                 loginUser(values.username, values.password).then((response) => {
                     localStorage.setItem('token', response.data.token);
 
