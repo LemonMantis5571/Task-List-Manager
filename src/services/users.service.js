@@ -8,12 +8,13 @@ export default async function getUserList() {
         }
     })
 }
+const timestamp = new Date().getTime();
 
 export const getUser = async() => {
 
     try {
 
-        const response = await axiosConfig.get("users/id");
+        const response = await axiosConfig.get(`users/id?timestamp=${timestamp}`);
         return response;
 
     } catch (error) {

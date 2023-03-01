@@ -8,7 +8,7 @@ export const initialState = {
 
 
 export const LOGIN = 'LOGIN';
-export const SUCESS = 'SUCESS';
+export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
 export const LOGOUT = 'LOGOUT';
 
@@ -23,14 +23,17 @@ const loginReducer = (state, action) => {
                 
            }
         
-        case SUCESS:
+        case SUCCESS:
            return {
             ...state,
             loggedIn: true
            }
 
         case LOGOUT:
-            break;
+            return {
+                ...state,
+                loggedIn: false
+            }
         
         case ERROR:
             break;

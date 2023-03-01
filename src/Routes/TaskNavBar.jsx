@@ -1,15 +1,39 @@
 import React, {useContext} from 'react';
 import { BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
-import { loginContext } from '../components/login/loginReducer';
+import { loginContext, LOGOUT } from '../components/login/loginReducer';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import HomePage from '../Pages/HomePage';
 import LoginPage from '../Pages/loginPage';
 import RegisterPage from '../Pages/registerPage';
-
+import { toast } from 'react-toastify';
 
 const TaskNavBar = () => {
     const {loginState, loginDispatch} = useContext(loginContext);
+
+    const logoutFunc = () => {
+        loginDispatch({type: LOGOUT});
+        localStorage.removeItem('token');
+        notifySuccess('Logged out successfully');
+    }
+
+
+    const notifySuccess = (message) => {
+        toast.success(message, {
+        render: message,
+        type: 'success',
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        isLoading: false
+        });
+    }
+
     return (
      <Router>            
         <nav className='navbar justify-content-center navbar-expand-md bg-dark' data-bs-theme="dark">
@@ -53,7 +77,7 @@ const TaskNavBar = () => {
                                              :(<li><Link className="dropdown-item" to="/login">Login</Link></li>)}
 
                         {loginState.loggedIn ? (<div><li><hr className="dropdown-divider"/></li>
-                        <li><Link className="dropdown-item" href="/">Logout</Link></li> </div>) : null}
+                        <li><Link className="dropdown-item" onClick={() => logoutFunc()} to='/'>Logout</Link></li> </div>) : null}
 
                     </ul>
                 </div>

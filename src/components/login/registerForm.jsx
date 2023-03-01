@@ -1,11 +1,43 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import { createUser } from '../../services/users.service';
 import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup';
 import registerIMG from '../../assets/images/register.png';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
-import { loginContext, SUCESS } from './loginReducer';
+import { toast } from 'react-toastify';
 
+
+const notifySuccess = (message) => {
+    toast.success(message, {
+    render: message,
+    type: 'success',
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    isLoading: false
+    });
+}
+
+const notifyError = (message) => {
+    toast.error(message, {
+    render: message,
+    type: 'error',
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    isLoading: false
+    });
+}
 
 
 
@@ -32,17 +64,7 @@ const loginSchema = Yup.object().shape(
 
 
 const RegisterForm = () => {
-    const {loginState, loginDispatch} = useContext(loginContext);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
     const Navigate = useNavigate();
-
-    const clearMessages = () => {
-        setTimeout(() => {
-          setErrorMessage(null);
-          setSuccessMessage(null);
-        }, 2000);
-      };
 
     return (
         <div className='d-flex justify-content-center align-items-center align-self-center form-div flex-column'>
@@ -53,29 +75,22 @@ const RegisterForm = () => {
                 await new Promise((r) => setTimeout(r, 1000));
                 
                 createUser(values.username.toLowerCase(), values.password).then((response) => {
-                        
-
                         if (response.status === 200) {
-                            setSuccessMessage('Account Created Sucessfully');
-                            loginDispatch({type: SUCESS});
-
-                            clearMessages();
+                            notifySuccess('Account created successfully');
 
                             setTimeout(() => {
                                 Navigate('/login');
                             }, 2000);
                             
                         }
-
                     }).catch((error) => {
                         console.log(error.response.status);
                         if(error.response && error.response.status === 409) {
-                            setErrorMessage('User Already Exists');
-                            clearMessages();
+                            notifyError('Account already exists');
+                            
                         }else {
                             console.log(error);
-                            setErrorMessage('Something went wrong, please try again later.');
-                            clearMessages();
+                            notifyError('Something went wrong. Try again later');
                         }
                     });
                 
@@ -131,9 +146,6 @@ const RegisterForm = () => {
                                         </div>
 
                                         <button type="submit" disabled={isSubmitting} className='btn btn-primary'>Create account</button>       
-                                        {isSubmitting ? (<p className='ErrorMessage bg-success'>Login in...</p>) : null}
-                                        {errorMessage ? (<div className='ErrorMessage bg-danger'>{errorMessage}</div>) : null}
-                                        {successMessage ? (<div className='ErrorMessage bg-success'>{successMessage}</div>) : null}
                                     </div>
                                     </div>
                                 </div>                            
