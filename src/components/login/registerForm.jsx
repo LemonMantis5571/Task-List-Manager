@@ -71,13 +71,15 @@ const RegisterForm = () => {
           <Formik 
             initialValues = { initialvalues }
             validationSchema = { loginSchema }
-            onSubmit={async (values) => {
+            onSubmit={async (values, {resetForm}) => {
                 await new Promise((r) => setTimeout(r, 1000));
                 
                 createUser(values.username.toLowerCase(), values.password).then((response) => {
                         if (response.status === 200) {
                             notifySuccess('Account created successfully');
+                            
 
+                            resetForm();
                             setTimeout(() => {
                                 Navigate('/login');
                             }, 2000);

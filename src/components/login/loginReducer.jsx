@@ -39,7 +39,7 @@ const loginReducer = (state, action) => {
             break;
     
         default:
-            break;
+            return state;
     }
 }
 

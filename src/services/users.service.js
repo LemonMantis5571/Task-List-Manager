@@ -8,20 +8,15 @@ export default async function getUserList() {
         }
     })
 }
-const timestamp = new Date().getTime();
 
-export const getUser = async() => {
-
-    try {
-
-        const response = await axiosConfig.get(`users/id?timestamp=${timestamp}`);
-        return response;
-
-    } catch (error) {
-        console.log(error)
-    }
-    
-    
+export const getUser = () => {
+    const token = localStorage.getItem('token');
+    const config = {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    };
+    return axios.get('https://task-manager-api-production-a08b.up.railway.app/api/users/id', config);
 }
 
 export const createUser = async(user, password) => {

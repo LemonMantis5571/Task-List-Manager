@@ -1,6 +1,6 @@
 import axios from "axios";
-
 const token = localStorage.getItem('token');
+
 export default axios.create(
     {
         baseURL: 'https://task-manager-api-production-a08b.up.railway.app/api/',

@@ -76,43 +76,39 @@ const LoginForm = () => {
           <Formik 
             initialValues = { initialvalues }
             validationSchema = { loginSchema }
-            onSubmit={async (values) => {
-                // await new Promise((r) => setTimeout(r, 1000));
-                
+            onSubmit={async (values, {resetForm}) => {
+                await new Promise((r) => setTimeout(r, 1000));
+                localStorage.removeItem('token');
                 notifyLoading('Login in...')
                 loginUser(values.username, values.password).then((response) => {
-                        localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('token', response.data.token);
 
-                        if (response.status === 200) {
-                            notifySuccess('LOGIN SUCCESSFUL');
-                            toast.dismiss();
-                            getUser().then((response) => {
-                                console.log(response.data);
+                    
+                    if (response.status === 200) {
+                        notifySuccess('LOGIN SUCCESSFUL');
+                        toast.dismiss();
+                        // Move the getUser() call inside the then block
+
+                        getUser().then((response) => {
                                 loginDispatch({type: LOGIN, payload: {id: response.data.id, user: response.data.user}});
-                            }).catch((error) => {
-                                console.log(error.response);
-                            })
+                        }).catch((error) => {
+                                console.log(error);
+                        })
 
-                            // type: TOGGLE_COMPLETE, payload: {id: id}
-
-                            setTimeout(() => {
-                                loginDispatch({type: SUCCESS});
-                                Navigate('/');
-                            }, 1000);
-                            
-                        }
-
+                        setTimeout(() => {
+                            loginDispatch({type: SUCCESS});
+                            Navigate('/');
+                        }, 1000);
+                    }
                     }).catch((error) => {
-                         if(error.response && error.response.status === 401) {
+                        if(error.response && error.response.status === 401) {
                             toast.dismiss();
                             notifyError('Wrong Credentials, Please Try Again');
-                        }else {
+                        } else {
                             console.log(error);
                             notifyError('Something went wrong, please try again later.');
                         }
                     });
-                
-                
             }}>
                 {/* We obtain props from formik */}
                 {({ isSubmitting}) => 
