@@ -76,7 +76,7 @@ const LoginForm = () => {
           <Formik 
             initialValues = { initialvalues }
             validationSchema = { loginSchema }
-            onSubmit={async (values, {resetForm}) => {
+            onSubmit={async (values) => {
                 await new Promise((r) => setTimeout(r, 1000));
                 localStorage.removeItem('token');
                 notifyLoading('Login in...')

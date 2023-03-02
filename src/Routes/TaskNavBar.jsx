@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { BrowserRouter as Router, Route, Routes, Link} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, Navigate} from "react-router-dom";
 import { loginContext, LOGOUT } from '../components/login/loginReducer';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
@@ -86,9 +86,9 @@ const TaskNavBar = () => {
             <Routes>
                 <Route exact path='/' element={<HomePage></HomePage>}></Route>
                 <Route path='/login' element={<LoginPage></LoginPage>}></Route>
-                <Route path='/register' element={<RegisterPage></RegisterPage>}></Route>
-                <Route  path='/task-form' element={<TaskForm></TaskForm>}></Route>
-                <Route  path='/task-list' element={<TaskList></TaskList>}></Route>
+                <Route path='/register' element={loginState.loggedIn ? <Navigate to='/login'/> :<RegisterPage></RegisterPage>}></Route>
+                <Route  path='/task-form' element={loginState.loggedIn ? <TaskForm></TaskForm> : <Navigate to='/login'/>} ></Route>
+                <Route  path='/task-list' element={loginState.loggedIn ? <TaskList></TaskList> : <Navigate to='/login'/>}></Route>
             </Routes>
         </Router>
     );
