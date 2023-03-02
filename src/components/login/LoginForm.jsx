@@ -6,7 +6,6 @@ import loginIMG from '../../assets/images/login.png';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import { LOGIN, loginContext, SUCCESS } from './loginReducer';
 import { toast } from 'react-toastify';
-import {getUserTasks} from '../../services/tasks.service';
 
 const initialvalues = {
     username: '',
@@ -96,21 +95,7 @@ const LoginForm = () => {
                                 console.log(error);
                         });
 
-                        getUserTasks().then((response) => {
-                                response.data.map((task => {
-                                    return dispatch({type: FETCH_TASKS_SUCCESS, payload: {
-                                        id: task.id,
-                                        completed: task.is_completed,
-                                        name: task.title,
-                                        description: task.description,
-                                        priority: task.priority,
-                                        date: task.expires
-                                    }});
-                
-                                }));
-                        }).catch((error) => {
-                                console.log(error);
-                        });
+                        
 
                         setTimeout(() => {
                             loginDispatch({type: SUCCESS});
