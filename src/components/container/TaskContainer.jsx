@@ -28,7 +28,7 @@ export const TOGGLE_COMPLETE = 'TOGGLE_COMPLETE';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 export const SHOW_ALL = 'SHOW_ALL';
 export const FETCH_TASKS_SUCCESS = 'FETCH_TASKS_SUCCESS';
-
+export const RESET = 'RESET'
 
 /**
  * The filterReducer function takes in two arguments, the filterstate and the action, and returns the
@@ -100,22 +100,29 @@ const TaskReducer = (state,action) => {
             } : task)
 
 
-        case SET_VISIBILITY_FILTER:
+        case SET_VISIBILITY_FILTER: 
             return filterTask(state, action.payload.filter)
             
 
         case FETCH_TASKS_SUCCESS:
+            const date = new Date(action.payload.date);
+            const formattedDate = date.toISOString().replace('T', ' ').replace(/\.\d+Z$/, '');
             return [
                 ...state,
-                ...action.payload.mappedData.map(data => ({
-                    id: data.id,
-                    completed: data.completed,
-                    name: data.name,
-                    description: data.description,
-                    priority: data.priority,
-                    date: data.date,
-                  })),
+                
+                {
+                    id: state.length,
+                    taskID: action.payload.id,
+                    completed: action.payload.completed,
+                    name : action.payload.name,
+                    description: action.payload.description,
+                    priority: action.payload.priority,
+                    date: formattedDate
+                }
             ]
+
+        case RESET:
+            return initialState;
 
         default:
             return state;

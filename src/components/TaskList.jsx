@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import { getUserTasks } from '../services/tasks.service';
-import {dispatchActions, myContext, SET_VISIBILITY_FILTER, FETCH_TASKS_SUCCESS, ADD_TASK} from './container/TaskContainer';
+import {dispatchActions, myContext, SET_VISIBILITY_FILTER, FETCH_TASKS_SUCCESS, ADD_TASK, RESET} from './container/TaskContainer';
 import Task from './Task';
 
 
@@ -17,34 +17,23 @@ const TaskList = () => {
 
 
     useEffect(() => {
+        dispatch({type: RESET});
         getUserTasks().then((response) => {
-            const mappedData = response.data.map(task => {
-                return {
+            response.data.map((task => {
+                return dispatch({type: FETCH_TASKS_SUCCESS, payload: {
                     id: task.id,
                     completed: task.is_completed,
                     name: task.title,
                     description: task.description,
                     priority: task.priority,
                     date: task.expires
-                }
-            });
-            console.log(mappedData.id);
-            dispatch({type: FETCH_TASKS_SUCCESS, payload: {
-                    id: mappedData.id,
-                    completed: mappedData.is_completed,
-                    name: mappedData.title,
-                    description: mappedData.description,
-                    priority: mappedData.priority,
-                    date: mappedData.expires
-            }});
-
+                }});
+                
+            }));
         }).catch((error) => {
             console.log(error);
         });
     }, [dispatch]); 
-
-    console.log(state);
-      
 
     return (
         /* A button group that filters the tasks. */

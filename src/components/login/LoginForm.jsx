@@ -6,12 +6,14 @@ import loginIMG from '../../assets/images/login.png';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import { LOGIN, loginContext, SUCCESS } from './loginReducer';
 import { toast } from 'react-toastify';
+import {getUserTasks} from '../../services/tasks.service';
 
 const initialvalues = {
     username: '',
     password: '',
 
 }
+
 /**
  * This function takes a message as an argument and returns a toast.loading(message) function.
  * @returns A toast object.
@@ -63,6 +65,8 @@ const loginSchema = Yup.object().shape(
     }
 )
 
+
+
 const LoginForm = () => {
     const {loginState, loginDispatch} = useContext(loginContext);
     const Navigate = useNavigate();
@@ -74,11 +78,9 @@ const LoginForm = () => {
             initialValues = { initialvalues }
             validationSchema = { loginSchema }
             onSubmit={async (values, {resetForm}) => {
-
                 await new Promise((r) => setTimeout(r, 1000));
                 localStorage.removeItem('token');
-                notifyLoading('Login in...');
-
+                notifyLoading('Login in...')
                 loginUser(values.username, values.password).then((response) => {
                     localStorage.setItem('token', response.data.token);
 
@@ -92,7 +94,23 @@ const LoginForm = () => {
                                 loginDispatch({type: LOGIN, payload: {id: response.data.id, user: response.data.user}});
                         }).catch((error) => {
                                 console.log(error);
-                        })
+                        });
+
+                        getUserTasks().then((response) => {
+                                response.data.map((task => {
+                                    return dispatch({type: FETCH_TASKS_SUCCESS, payload: {
+                                        id: task.id,
+                                        completed: task.is_completed,
+                                        name: task.title,
+                                        description: task.description,
+                                        priority: task.priority,
+                                        date: task.expires
+                                    }});
+                
+                                }));
+                        }).catch((error) => {
+                                console.log(error);
+                        });
 
                         setTimeout(() => {
                             loginDispatch({type: SUCCESS});
