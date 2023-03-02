@@ -18,7 +18,7 @@ const initialvalues = {
  * @returns A toast object.
  */
 const notifyLoading  = (message) => {
-    return toast.loading(message)
+    return toast.loading(message);
 }
 
 const notifySuccess = (message) => {
@@ -154,7 +154,6 @@ const LoginForm = () => {
                                     </div>
                                 </div>                            
                         </Form>
-
                     )
                 }         
           </Formik>

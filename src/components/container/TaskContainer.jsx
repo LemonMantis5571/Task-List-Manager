@@ -76,18 +76,9 @@ it returns the appropriate function with the state and the action payload as arg
 const TaskReducer = (state,action) => {
     switch (action.type) {
         case ADD_TASK:
-            return [
-                ...state,
-                {
-                    
-                    id: state.length,
-                    completed: false,
-                    name : action.payload.name,
-                    description: action.payload.description,
-                    priority: action.payload.priority,
-                    date: action.payload.date
-                }
-            ]
+            return [...state, {
+                completed: true
+            }]
 
         case DELETE_TASK:
             return state.filter((state, index) =>  index !== action.id);
@@ -109,7 +100,6 @@ const TaskReducer = (state,action) => {
             const formattedDate = date.toISOString().replace('T', ' ').replace(/\.\d+Z$/, '');
             return [
                 ...state,
-                
                 {
                     id: state.length,
                     taskID: action.payload.id,

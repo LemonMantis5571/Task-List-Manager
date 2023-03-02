@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { LEVELS } from '../models/LEVELS.enum';
 import { TextField } from '@mui/material';
 import { withStyles } from '@material-ui/core/styles';
+import { CreateTask } from '../services/tasks.service';
 
 /* A way to customize the TextField component from Material UI. */
 const CssTextField = withStyles(
@@ -71,17 +72,15 @@ const TaskForm = () => {
  * When the user clicks the submit button, the values from the form are passed to the submit function,
  * which then dispatches an action to the reducer, which then updates the state.
  */
-    const submit = (values) => {
-        console.log(typeof(date));
-        dispatch({
-            type: ADD_TASK,
-            payload: {
-                name: values.name,
-                description: values.description,
-                priority: values.level,
-                date: date.replace('T', ' ')
-            }
-        })
+    const submit = async(values) => {
+        const formatDate = date.replace('T', ' ');
+        try {
+            await CreateTask(values.name, values.description, false, values.level, formatDate);
+
+        dispatch({type: ADD_TASK});
+    } catch (error) {
+        console.log(error);
+    }
     }
 
     return (

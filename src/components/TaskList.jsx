@@ -28,10 +28,9 @@ const TaskList = () => {
                     priority: task.priority,
                     date: task.expires
                 }});
-                
             }));
         }).catch((error) => {
-            console.log(error);
+            console.log(error.response.data);
         });
     }, [dispatch]); 
 
