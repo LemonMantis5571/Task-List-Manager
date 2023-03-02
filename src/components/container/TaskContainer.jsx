@@ -81,7 +81,7 @@ const TaskReducer = (state,action) => {
             }]
 
         case DELETE_TASK:
-            return state.filter((state, index) =>  index !== action.id);
+            return state.filter((state, index) =>  index !== action.payload.id);
                 
     
         case TOGGLE_COMPLETE:

@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import { DeleteTasks } from '../services/tasks.service';
 import { DELETE_TASK, dispatchActions, TOGGLE_COMPLETE } from './container/TaskContainer';
 
 /**
@@ -9,7 +10,15 @@ import { DELETE_TASK, dispatchActions, TOGGLE_COMPLETE } from './container/TaskC
 const Task = ({task, id}) => {
 
     const {dispatch} = useContext(dispatchActions);
- 
+
+    const handleDeleteTask = async (id) => {
+        try {
+            await DeleteTasks(id);
+            dispatch({ type: DELETE_TASK, payload: {id: id} });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (    
         <tr onClick={() => dispatch({type: TOGGLE_COMPLETE, payload: {id: id}})} className = {task.completed ? 'table-success' : 'table-danger'}>
@@ -20,7 +29,7 @@ const Task = ({task, id}) => {
             {task.completed ? 'Completed' : 'Incompleted'}
         </td>
         <td>{task.priority}</td>
-        <td><button className='btn btn-danger py-1 aling-self-center' onClick={() => dispatch({type: DELETE_TASK, id})}>X</button></td>
+        <td><button className='btn btn-danger py-1 aling-self-center' onClick={() => handleDeleteTask(id)}>X</button></td>
         <td>{task.date}</td>
 
     </tr>
