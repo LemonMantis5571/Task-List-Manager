@@ -38,9 +38,9 @@ const TaskNavBar = () => {
      <Router>            
         <nav className='navbar justify-content-center navbar-expand-md bg-dark' data-bs-theme="dark">
             <div className="container-fluid">
-                <div className='logo d-flex'>
+                <div className='logo d-flex position-relative'>
                     <Link className="navbar-brand" href='/'>Task-Manager</Link>
-                    {loginState.loggedIn ? (<p className='m-auto' style={{color: 'white'}}>Welcome {loginState.user}</p>) : null}
+                    {loginState.loggedIn ? (<p className='m-auto position-relative' style={{color: 'white'}}>Welcome {loginState.user}</p>) : null}
                 </div>
                 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@ const TaskNavBar = () => {
                             <Link className="nav-link" to='/task-list'>Task-List</Link>
                         </li>) : null}
                         <li className="nav-item">
-                            <Link className="nav-link disabled">About</Link>
+                            <Link className="nav-link" to='https://github.com/LemonMantis5571/Task-List-Manager' target='_blank'>About</Link>
                         </li>
         
                     </ul>

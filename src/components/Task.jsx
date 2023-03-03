@@ -1,6 +1,6 @@
-import React, {useContext, useEffect} from 'react';
-import { DeleteTasks, getUserTasks } from '../services/tasks.service';
-import { DELETE_TASK, dispatchActions, FETCH_TASKS_SUCCESS, RESET, TOGGLE_COMPLETE } from './container/TaskContainer';
+import React, {useContext} from 'react';
+import { DeleteTasks} from '../services/tasks.service';
+import { DELETE_TASK, dispatchActions, TOGGLE_COMPLETE } from './container/TaskContainer';
 
 /**
  * Task is a function that takes in a task and an id and returns a table row with the task's name,
