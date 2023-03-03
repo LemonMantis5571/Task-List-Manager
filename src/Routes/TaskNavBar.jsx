@@ -41,7 +41,7 @@ const TaskNavBar = () => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">Task Manager</Link>
-                    {loginState.loggedIn ? (<p className='m-auto position-relative text-capitalize' style={{color: 'white'}}>Welcome {loginState.user}</p>) : null}
+                    {loginState.loggedIn ? (<p className='m-auto position-relative text-capitalize' style={{ color: 'white' }}>Welcome {loginState.user}</p>) : null}
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -62,25 +62,26 @@ const TaskNavBar = () => {
                             </li>) : null}
 
                             <li className="nav-item">
-                                <Link className="nav-link" to="https://github.com/LemonMantis5571/Task-List-Manager" tabindex="-1" aria-disabled="true" target='_blank'>About</Link>
+                                <Link className="nav-link" to="https://github.com/LemonMantis5571/Task-List-Manager" tabIndex="-1" aria-disabled="true" target='_blank'>About</Link>
                             </li>
                         </ul>
-                    </div>
-                    <div className="navbar-brand nav-item dropdown ">
-                        <i className="nav-link dropdown-toggle" role='button' data-bs-toggle="dropdown" aria-expanded="false">
-                            <i className='bi bi-person-circle'></i>
-                        </i>
 
-                        <ul className="dropdown-menu dropdown-menu-end">
+                        <div className="navbar-brand nav-item dropdown ">
+                            <i className="nav-link dropdown-toggle" role='button' data-bs-toggle="dropdown" aria-expanded="false">
+                                <i className='bi bi-person-circle'></i>
+                            </i>
 
-                            {loginState.loggedIn ? null : (<li><Link className="dropdown-item" to='/register'>Create Account</Link></li>)}
+                            <ul className="dropdown-menu dropdown-menu-end">
 
-                            {loginState.loggedIn ? (<li><Link className="dropdown-item" to="/">Profile</Link></li>)
-                                : (<li><Link className="dropdown-item" to="/login">Login</Link></li>)}
+                                {loginState.loggedIn ? null : (<li><Link className="dropdown-item" to='/register'>Create Account</Link></li>)}
 
-                            {loginState.loggedIn ? (<div><li><hr className="dropdown-divider" /></li>
-                                <li><Link className="dropdown-item" onClick={() => logoutFunc()} to='/'>Logout</Link></li> </div>) : null}
-                        </ul>
+                                {loginState.loggedIn ? (<li><Link className="dropdown-item" to="/">Profile</Link></li>)
+                                    : (<li><Link className="dropdown-item" to="/login">Login</Link></li>)}
+
+                                {loginState.loggedIn ? (<div><li><hr className="dropdown-divider" /></li>
+                                    <li><Link className="dropdown-item" onClick={() => logoutFunc()} to='/'>Logout</Link></li> </div>) : null}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>
