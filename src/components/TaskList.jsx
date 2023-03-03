@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { getUserTasks } from '../services/tasks.service';
 import {dispatchActions, myContext, SET_VISIBILITY_FILTER, FETCH_TASKS_SUCCESS, RESET} from './container/TaskContainer';
 import Task from './Task';
@@ -13,11 +13,10 @@ const TaskList = () => {
     const {dispatch, filterdispatch} = useContext(dispatchActions);
     const completedTasks = state.filter(task => task.completed).length;
     const activeTasks = state.filter(task => !task.completed).length;
-
-
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        dispatch({type: RESET});
+        dispatch({type: RESET});      
         getUserTasks().then((response) => {
             response.data.map((task => {
                 return dispatch({type: FETCH_TASKS_SUCCESS, payload: {
@@ -29,10 +28,18 @@ const TaskList = () => {
                     date: task.expires
                 }});
             }));
+            
         }).catch((error) => {
             console.log(error.response.data);
         });
+
+      
     }, [dispatch]); 
+
+
+    setTimeout(() => {
+        setLoading(false);
+    }, 1000);
 
     return (
         /* A button group that filters the tasks. */
@@ -75,9 +82,14 @@ const TaskList = () => {
                             {activeTasks > 0 && (`${activeTasks}`)}
                         </span></button>
             </div>
-
+            
+            {loading && <div class="d-flex justify-content-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>}
             {/* Rendering the table. */}
-            <table className='table table-dark table-striped w-50 m-auto align-middle'>
+            {!loading && <table className='table table-dark table-striped w-50 m-auto align-middle'>
                 <thead>
                     <tr>
                         <th scope='col'>#</th>
@@ -91,10 +103,10 @@ const TaskList = () => {
                 </thead>
                 <tbody>
                     {state.map((task, index) => {
-                        console.log(task.id)
+
                         if ((filterstate === 'SHOW_ALL') || (filterstate === 'SHOW_COMPLETED' && task.completed) || (filterstate === 'SHOW_ACTIVE' && !task.completed)) {
                             return (
-                                        <Task key={index} task={task} id={task.id}>
+                                        <Task key={index} task={task} taskID = {task.taskID} id={index}>
                                         </Task>                                    
                                     );
                         }else {
@@ -103,7 +115,7 @@ const TaskList = () => {
 
                         })}
                 </tbody>
-            </table>
+            </table>}
             
         </div>
     );

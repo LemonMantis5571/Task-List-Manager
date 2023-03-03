@@ -1,20 +1,20 @@
-import React, {useContext} from 'react';
-import { DeleteTasks } from '../services/tasks.service';
-import { DELETE_TASK, dispatchActions, TOGGLE_COMPLETE } from './container/TaskContainer';
+import React, {useContext, useEffect} from 'react';
+import { DeleteTasks, getUserTasks } from '../services/tasks.service';
+import { DELETE_TASK, dispatchActions, FETCH_TASKS_SUCCESS, RESET, TOGGLE_COMPLETE } from './container/TaskContainer';
 
 /**
  * Task is a function that takes in a task and an id and returns a table row with the task's name,
  * description, completion status, priority, and date.
  * @returns A function that returns a component.
  */
-const Task = ({task, id}) => {
-
+const Task = ({task, taskID , id }) => {
     const {dispatch} = useContext(dispatchActions);
 
-    const handleDeleteTask = async (id) => {
+    const handleDeleteTask = async (taskID) => {
+        dispatch({ type: DELETE_TASK, payload: { id: id} });
         try {
-            await DeleteTasks(id);
-            dispatch({ type: DELETE_TASK, payload: {id: id} });
+            await DeleteTasks(taskID);
+           
         } catch (error) {
             console.log(error);
         }
@@ -29,7 +29,7 @@ const Task = ({task, id}) => {
             {task.completed ? 'Completed' : 'Incompleted'}
         </td>
         <td>{task.priority}</td>
-        <td><button className='btn btn-danger py-1 aling-self-center' onClick={() => handleDeleteTask(id)}>X</button></td>
+        <td><button className='btn btn-danger py-1 aling-self-center' onClick={() => handleDeleteTask(taskID)}>X</button></td>
         <td>{task.date}</td>
 
     </tr>
