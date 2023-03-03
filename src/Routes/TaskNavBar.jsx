@@ -40,7 +40,7 @@ const TaskNavBar = () => {
             <div className="container-fluid">
                 <div className='logo d-flex position-relative'>
                     <Link className="navbar-brand" href='/'>Task-Manager</Link>
-                    {loginState.loggedIn ? (<p className='m-auto position-relative' style={{color: 'white'}}>Welcome {loginState.user}</p>) : null}
+                    {loginState.loggedIn ? (<p className='m-auto position-relative text-capitalize' style={{color: 'white'}}>Welcome {loginState.user}</p>) : null}
                 </div>
                 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

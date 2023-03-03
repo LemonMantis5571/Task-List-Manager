@@ -51,9 +51,9 @@ const initialvalues = {
 const loginSchema = Yup.object().shape(
 
     {
-        username: Yup.string().required('Username is required').min(2, 'Too Short')
+        username: Yup.string().required('Username is required').min(5, 'Too Short')
         .max(30, 'Too Long'),
-        password: Yup.string().required('Password is required').min(2, 'Too Short')
+        password: Yup.string().required('Password is required').min(8, 'Too Short')
         .max(30, 'Too Long'),
         passwordConfirmation: Yup.string()
                     .test('passwords-match', 'Passwords must match', function(value){
@@ -74,27 +74,26 @@ const RegisterForm = () => {
             onSubmit={async (values, {resetForm}) => {
                 await new Promise((r) => setTimeout(r, 1000));
                 
-                createUser(values.username.toLowerCase(), values.password).then((response) => {
-                        if (response.status === 200) {
-                            notifySuccess('Account created successfully');
+                try{
+                    const response = await createUser(values.username.toLowerCase(), values.password);
+                    if (response.status === 200) {
+                        notifySuccess('Account created successfully');
                             
-
-                            resetForm();
-                            setTimeout(() => {
+                        resetForm();
+                        setTimeout(() => {
                                 Navigate('/login');
-                            }, 2000);
+                        }, 2000);
+                    }
+                }catch(error) {
+                    console.log(error.response.status);
+                    if(error.response && error.response.status === 409) {
+                        notifyError('Account already exists');
                             
-                        }
-                    }).catch((error) => {
-                        console.log(error.response.status);
-                        if(error.response && error.response.status === 409) {
-                            notifyError('Account already exists');
-                            
-                        }else {
-                            console.log(error);
-                            notifyError('Something went wrong. Try again later');
-                        }
-                    });
+                    }else {
+                        console.log(error);
+                        notifyError('Something went wrong. Try again later');
+                    }
+                };
                 
                 
             }}>

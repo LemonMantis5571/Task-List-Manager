@@ -9,14 +9,15 @@ export default async function getUserList() {
     })
 }
 
-export const getUser = () => {
+export const getUser = async () => {
     const token = localStorage.getItem('token');
-    const config = {
+    const config = { 
         headers: {
             'Authorization': `Bearer ${token}`
         }
     };
-    return axios.get('https://task-manager-api-production-a08b.up.railway.app/api/users/id', config);
+    const response = axios.get('https://task-manager-api-production-a08b.up.railway.app/api/users/id', config);
+    return response;
 }
 
 export const createUser = async(user, password) => {
