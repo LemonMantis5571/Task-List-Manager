@@ -6,6 +6,27 @@ import { LEVELS } from '../models/LEVELS.enum';
 import { TextField } from '@mui/material';
 import { withStyles } from '@material-ui/core/styles';
 import { CreateTask } from '../services/tasks.service';
+import { toast } from 'react-toastify';
+
+const notifyLoading  = (message) => {
+    return toast.loading(message);
+}
+
+const notifySuccess = (message) => {
+    toast.success(message, {
+    render: message,
+    type: 'success',
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    isLoading: false
+    });
+}
 
 /* A way to customize the TextField component from Material UI. */
 const CssTextField = withStyles(
@@ -59,13 +80,12 @@ const TaskForm = () => {
                 .oneOf([LEVELS.normal, LEVELS.urgent, LEVELS.blocking], 'You must select a priority')
                 .required('Priority is required'),
 
-            date: Yup.date().required('Expiration Date of the task').nullable(),
+            date: Yup.string().notRequired('Expiration Date of the task').nullable(),
         }
 
         
     )
 
-   
 
     
 /**
@@ -73,14 +93,22 @@ const TaskForm = () => {
  * which then dispatches an action to the reducer, which then updates the state.
  */
     const submit = async(values) => {
-        const formatDate = date.replace('T', ' ');
-        try {
-            await CreateTask(values.name, values.description, false, values.level, formatDate);
 
-        dispatch({type: ADD_TASK});
-    } catch (error) {
-        console.log(error);
-    }
+        notifyLoading('Loading...');
+
+        let formatDate =  date ? date.replace('T', ' ') : new Date().toISOString().replace(/\.\d+Z$/, ''); 
+        
+        try {
+
+            await CreateTask(values.name, values.description, false, values.level, formatDate);
+            dispatch({type: ADD_TASK});
+            toast.dismiss();
+            notifySuccess('Task Created Successfully');
+
+        } catch (error) {
+            notifySuccess('Something Went Wrong. Try again later.');
+            console.log(error);
+        }
     }
 
     return (
@@ -139,8 +167,7 @@ const TaskForm = () => {
 
                         </div>
                         <div>
-                            <button type="submit" className='btn btn-success'>Create Task</button>
-                                {isSubmitting ? (<div className='ErrorMessage bg-success p-3'>Task created sucessfully </div>) : null}
+                            <button type="submit" className='btn btn-success button' id='button'>Create Task</button>
                         </div>
                     </Form>
                 </div>)}

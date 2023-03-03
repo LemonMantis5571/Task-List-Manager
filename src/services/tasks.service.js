@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getUserTasks = () => {
+export const getUserTasks = async () => {
     const token = localStorage.getItem('token');
    
     const config = {
@@ -9,7 +9,8 @@ export const getUserTasks = () => {
         }
     }
 
-    return axios.get('https://task-manager-api-production-a08b.up.railway.app/api/users/id/tasks', config);
+    const response = axios.get('https://task-manager-api-production-a08b.up.railway.app/api/users/id/tasks', config);
+    return response;
 }
 
 export const DeleteTasks = (id) => {

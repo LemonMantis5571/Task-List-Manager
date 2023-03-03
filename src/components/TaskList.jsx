@@ -15,9 +15,11 @@ const TaskList = () => {
     const activeTasks = state.filter(task => !task.completed).length;
     const [loading, setLoading] = useState(true);
 
+
+
     useEffect(() => {
-        dispatch({type: RESET});      
-        getUserTasks().then((response) => {
+
+        const mapUserTasksToState = (response) => {
             response.data.map((task => {
                 return dispatch({type: FETCH_TASKS_SUCCESS, payload: {
                     id: task.id,
@@ -28,12 +30,15 @@ const TaskList = () => {
                     date: task.expires
                 }});
             }));
-            
-        }).catch((error) => {
-            console.log(error.response.data);
-        });
+        }
 
-      
+        dispatch({type: RESET}); 
+        const fetchUserTasks = async() => {
+            const response = await getUserTasks();
+            mapUserTasksToState(response);
+        }     
+        fetchUserTasks();
+
     }, [dispatch]); 
 
 
@@ -83,9 +88,9 @@ const TaskList = () => {
                         </span></button>
             </div>
             
-            {loading && <div class="d-flex justify-content-center">
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
+            {loading && <div className="d-flex justify-content-center">
+                            <div className="spinner-border text-primary" role="status">
+                                <span className="visually-hidden">Loading...</span>
                             </div>
                         </div>}
             {/* Rendering the table. */}

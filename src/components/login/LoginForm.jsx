@@ -81,34 +81,42 @@ const LoginForm = () => {
                 await new Promise((r) => setTimeout(r, 1000));
                 localStorage.removeItem('token');
                 notifyLoading('Login in...');
-                
-                try{
-                    const response = await  loginUser(values.username, values.password);
-                    localStorage.setItem('token', response.data.token);
 
-                    if (response.status === 200) {
+                try{
+                    const response = await  loginUser( values.username, values.password );
+                    localStorage.setItem( 'token', response.data.token );
+
+                    if ( response.status === 200 ) {
                         notifySuccess('LOGIN SUCCESSFUL');
                         toast.dismiss();
                             // Move the getUser() call inside the then block
                         try {
+
                             const user = await getUser();
-                            loginDispatch({type: LOGIN, payload: {id: user.data.id, user: user.data.user}});
+                            loginDispatch({type: LOGIN, payload: { id: user.data.id, user: user.data.user }});
 
                         }catch(error){
+
                             console.log(error.response);
+
                         }
                       
                         setTimeout(() => {
+
                             loginDispatch({type: SUCCESS});
                             Navigate('/');
+
                         }, 1000);
                     }   
 
                 }catch(error) {
+
                         if(error.response && error.response.status === 401) {
                             toast.dismiss();
                             notifyError('Wrong Credentials, Please Try Again');
+
                         } else {
+
                             console.log(error);
                             notifyError('Something went wrong, please try again later.');
                         }
