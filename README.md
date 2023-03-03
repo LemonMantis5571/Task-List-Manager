@@ -48,11 +48,11 @@ Create an ACCOUNT and start organizing your Tasks today!
 
 Disclaimer: DO NOT USE YOUR REAL CREDENTIALS, THIS APP DOESN'T MEET THE SECURITY STANDARS AND SHOULD NOT BE USED TO STORAGE VALUABLE INFORMATION.
 
-![image](https://user-images.githubusercontent.com/85099589/222610281-9f97365e-a9b6-4334-9038-a6dd3919f83c.png)
+![image](https://user-images.githubusercontent.com/85099589/222612191-9a0e644d-2854-4321-bc9c-0814bbe673ae.png)
 
+![image](https://user-images.githubusercontent.com/85099589/222612253-a6aa6b70-b229-4615-b752-3936f8f19716.png)
 
-![image](https://user-images.githubusercontent.com/85099589/222610357-2851c40f-b897-4fb7-8b0e-8b0c9ce1c0b1.png)
-
+![image](https://user-images.githubusercontent.com/85099589/222612346-7d569f59-29a5-4b94-a532-d7a63c661d08.png)
 
 ![image](https://user-images.githubusercontent.com/85099589/222610548-a4c04728-b733-4137-b9d5-4404a338e7df.png)
 
