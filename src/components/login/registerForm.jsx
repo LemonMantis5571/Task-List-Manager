@@ -7,6 +7,11 @@ import {Formik, Form, Field, ErrorMessage} from 'formik';
 import { toast } from 'react-toastify';
 
 
+const notifyLoading  = (message) => {
+    return toast.loading(message);
+}
+
+
 const notifySuccess = (message) => {
     toast.success(message, {
     render: message,
@@ -72,11 +77,13 @@ const RegisterForm = () => {
             initialValues = { initialvalues }
             validationSchema = { loginSchema }
             onSubmit={async (values, {resetForm}) => {
+                notifyLoading('Please wait...');
                 await new Promise((r) => setTimeout(r, 1000));
                 
                 try{
                     const response = await createUser(values.username.toLowerCase(), values.password);
-                    if (response.status === 200) {
+                    if (response.status === 201) {
+                        toast.dismiss();
                         notifySuccess('Account created successfully');
                             
                         resetForm();
