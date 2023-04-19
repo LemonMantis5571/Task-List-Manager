@@ -95,10 +95,12 @@ const RegisterForm = () => {
                     console.log(error.response.status);
                     if(error.response && error.response.status === 409) {
                         notifyError('Account already exists');
+                        toast.dismiss();
                             
                     }else {
                         console.log(error);
                         notifyError('Something went wrong. Try again later');
+                        toast.dismiss();
                     }
                 };
                 
