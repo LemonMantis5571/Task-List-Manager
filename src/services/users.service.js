@@ -16,7 +16,7 @@ export const getUser = async () => {
             'Authorization': `Bearer ${token}`
         }
     };
-    const response = axios.get('https://task-manager-api-production-a08b.up.railway.app/api/users/id', config);
+    const response = axios.get('https://task-manager-api-g497.vercel.app/api/users/id', config);
     return response;
 }
 
@@ -68,7 +68,7 @@ export const loginUser = async(user, password) => {
       password: password
     }
  
-    const response = await axios.post('https://task-manager-api-production-a08b.up.railway.app/api/users/login', body);
+    const response = await axios.post('https://task-manager-api-g497.vercel.app/api/users/login', body);
 
     return response;
   
