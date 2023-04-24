@@ -28,7 +28,7 @@ export const createUser = async(user, password) => {
     }
 
     
-    const response = await axiosConfig.post('users/create', body);
+    const response = await axiosConfig.post('https://task-manager-api-production-a08b.up.railway.app/api/users/create', body);
     return response;
 
 }
@@ -40,7 +40,7 @@ export const updateUser = async(user, password) => {
     }
 
     try {
-        const response = await axiosConfig.patch("users/update/", body);
+        const response = await axiosConfig.patch("https://task-manager-api-production-a08b.up.railway.app/api/users/update", body);
         return response.data;
         
     } catch (error) {
@@ -53,7 +53,7 @@ export const updateUser = async(user, password) => {
 export const deleteUser = async(id) => {
 
     try {
-        const response = await axiosConfig.delete(`users/delete/${id}`);
+        const response = await axiosConfig.delete(`https://task-manager-api-production-a08b.up.railway.app/api/users/delete/${id}`);
         return response.data;
         
     } catch (error) {

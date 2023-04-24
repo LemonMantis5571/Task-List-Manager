@@ -67,7 +67,7 @@ const loginSchema = Yup.object().shape(
 
 
 const LoginForm = () => {
-    const {loginState, loginDispatch} = useContext(loginContext);
+    const {loginDispatch} = useContext(loginContext);
     const Navigate = useNavigate();
 
     return (
@@ -114,11 +114,13 @@ const LoginForm = () => {
                         if(error.response && error.response.status === 401) {
                             toast.dismiss();
                             notifyError('Wrong Credentials, Please Try Again');
+                            toast.dismiss();
 
                         } else {
 
                             console.log(error);
                             notifyError('Something went wrong, please try again later.');
+                            toast.dismiss();
                         }
                     }; 
             }}>

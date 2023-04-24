@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { loginContext, LOGOUT } from '../components/login/loginReducer';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
@@ -8,6 +7,7 @@ import HomePage from '../Pages/HomePage';
 import LoginPage from '../Pages/loginPage';
 import RegisterPage from '../Pages/registerPage';
 import { toast } from 'react-toastify';
+
 
 const TaskNavBar = () => {
     const { loginState, loginDispatch } = useContext(loginContext);
@@ -19,7 +19,7 @@ const TaskNavBar = () => {
     }
 
 
-    const notifySuccess = (message) => {
+const notifySuccess = (message) => {
         toast.success(message, {
             render: message,
             type: 'success',
@@ -33,8 +33,7 @@ const TaskNavBar = () => {
             theme: "colored",
             isLoading: false
         });
-    }
-
+}
 
     return (
         <Router>
@@ -49,9 +48,6 @@ const TaskNavBar = () => {
                         <ul className="navbar-nav m-auto">
                             <li className="nav-item">
                                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/">Features</Link>
                             </li>
                             {loginState.loggedIn ? (<li className="nav-item">
                                 <Link className="nav-link" to='/task-form'>Task-Form</Link>

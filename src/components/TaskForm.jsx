@@ -28,6 +28,22 @@ const notifySuccess = (message) => {
     });
 }
 
+const notifyError = (message) => {
+    toast.error(message, {
+    render: message,
+    type: 'error',
+    position: "bottom-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    isLoading: false
+    });
+}
+
 /* A way to customize the TextField component from Material UI. */
 const CssTextField = withStyles(
     {
@@ -106,7 +122,8 @@ const TaskForm = () => {
             notifySuccess('Task Created Successfully');
 
         } catch (error) {
-            notifySuccess('Something Went Wrong. Try again later.');
+            notifyError('Something Went Wrong. Try again later.');
+            toast.dismiss();
             console.log(error);
         }
     }

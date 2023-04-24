@@ -49,6 +49,6 @@ export const CreateTask = async (title, description, completed, priority, expire
         return response.data; // Devuelve la respuesta de la API
     } catch (error) {
         console.log(error);
-        throw error; // Lanza el error para que pueda ser manejado por el llamador
+         // Lanza el error para que pueda ser manejado por el llamador
     }
 }
