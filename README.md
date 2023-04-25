@@ -67,8 +67,8 @@ MAINTAINERS
 
 Future Implementations
 -----------
- * API DOCUMENTATION
  * RESPONSIVE
+ * PROFILE PAGE
  * UPDATE TASKS
 
 KNOWN BUGS
