@@ -69,8 +69,6 @@ Future Implementations
 -----------
  * API DOCUMENTATION
  * RESPONSIVE
- * PROFILE PAGE
- * UPDATE CSS
  * UPDATE TASKS
 
 KNOWN BUGS
