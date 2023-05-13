@@ -1,7 +1,7 @@
 # Task Manager *ALPHA 1.0*
 This is a FULL STACK PROJECT (API-REST)
 
-To run this app you need to host the backend yourself [TaskListManager](https://github.com/LemonMantis5571/TASK-MANAGER-API)
+To run this app you need to host the backend yourself [TaskListAPI](https://github.com/LemonMantis5571/TASK-MANAGER-API)
 
 CONTENTS OF THIS FILE
 ---------------------
