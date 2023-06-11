@@ -9,7 +9,7 @@ export const getUserTasks = async () => {
         }
     }
 
-    const response = axios.get('https://task-manager-api-g497.vercel.app/api/users/id/tasks', config);
+    const response = axios.get('https://task-manager-mjsgqfln4-lemonmantis5571.vercel.app/api/users/id/tasks', config);
     return response;
 }
 
@@ -23,7 +23,7 @@ export const DeleteTasks = (id) => {
     }
 
 
-    return axios.delete(`https://task-manager-api-g497.vercel.app/api/users/id/tasks/${id}`, config);
+    return axios.delete(`https://task-manager-mjsgqfln4-lemonmantis5571.vercel.app/api/users/id/tasks/${id}`, config);
 
 }
 
@@ -45,7 +45,7 @@ export const CreateTask = async (title, description, completed, priority, expire
     }
 
     try {
-        const response = await axios.post('https://task-manager-api-g497.vercel.app/api/users/create/tasks', body, config); 
+        const response = await axios.post('https://task-manager-mjsgqfln4-lemonmantis5571.vercel.app/api/users/create/tasks', body, config); 
         return response.data; // Devuelve la respuesta de la API
     } catch (error) {
         console.log(error);

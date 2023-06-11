@@ -16,7 +16,7 @@ export const getUser = async () => {
             'Authorization': `Bearer ${token}`
         }
     };
-    const response = axios.get('https://task-manager-api-g497.vercel.app/api/users/id', config);
+    const response = axios.get('https://task-manager-mjsgqfln4-lemonmantis5571.vercel.app/api/users/id', config);
     return response;
 }
 
@@ -28,7 +28,7 @@ export const createUser = async(user, password) => {
     }
 
     
-    const response = await axiosConfig.post('https://task-manager-api-g497.vercel.app/api/users/create', body);
+    const response = await axiosConfig.post('https://task-manager-mjsgqfln4-lemonmantis5571.vercel.app/api/users/create', body);
     return response;
 
 }
@@ -40,7 +40,7 @@ export const updateUser = async(user, password) => {
     }
 
     try {
-        const response = await axiosConfig.patch("https://task-manager-api-g497.vercel.app/api/users/update", body);
+        const response = await axiosConfig.patch("https://task-manager-mjsgqfln4-lemonmantis5571.vercel.app/api/users/update", body);
         return response.data;
         
     } catch (error) {
@@ -53,7 +53,7 @@ export const updateUser = async(user, password) => {
 export const deleteUser = async(id) => {
 
     try {
-        const response = await axiosConfig.delete(`hhttps://task-manager-api-g497.vercel.app/api/users/delete/${id}`);
+        const response = await axiosConfig.delete(`https://task-manager-mjsgqfln4-lemonmantis5571.vercel.app/api/users/delete/${id}`);
         return response.data;
         
     } catch (error) {
@@ -68,7 +68,7 @@ export const loginUser = async(user, password) => {
       password: password
     }
  
-    const response = await axios.post('https://task-manager-api-g497.vercel.app/api/users/login', body);
+    const response = await axios.post('https://task-manager-mjsgqfln4-lemonmantis5571.vercel.app/api/users/login', body);
 
     return response;
   
