@@ -118,7 +118,7 @@ const RegisterForm = () => {
                                 <div className='h-100 w-75 d-flex flex-column justify-content-center align-items-center parent-login-div'>
                                     <h6 className='display-6 fw-bold mb-3'> Register</h6>
 
-                                    <div className="mb-3 d-flex flex-column">
+                                    <div className="mb-3 d-flex flex-column input-div">
                                         <label htmlFor="username" style={{ color: 'black' }} className='form-label badge fs-5'>Username</label>
                                         <div className='input-group d-flex'>
                                             <span className="input-group-text" id="basic-addon1">
@@ -130,7 +130,7 @@ const RegisterForm = () => {
                                         <ErrorMessage name='username' component='div' className='ErrorMessage bg-danger'></ErrorMessage>
                                     </div>
 
-                                    <div className='mb-3 d-flex flex-column'>
+                                    <div className='mb-3 d-flex flex-column input-div'>
                                         <label htmlFor="password" style={{ color: 'black' }} className='form-label badge fs-5'>Password</label>
                                         <div className='input-group d-flex'>
                                             <span className="input-group-text" id="basic-addon1">
@@ -142,7 +142,7 @@ const RegisterForm = () => {
                                         <ErrorMessage name='password' component='div' className='ErrorMessage bg-danger'></ErrorMessage>
                                     </div>
 
-                                    <div className='mb-3 d-flex flex-column'>
+                                    <div className='mb-3 d-flex flex-column input-div'>
                                         <label htmlFor="passwordConfirmation" style={{ color: 'black' }} className='form-label badge fs-5'>Confirm Password</label>
                                         <div className='input-group d-flex'>
                                             <span className="input-group-text" id="basic-addon1">
