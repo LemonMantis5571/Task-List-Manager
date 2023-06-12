@@ -48,25 +48,28 @@ body {
 }
 .sec-home .home-cta .home-title {
   color: white;
-  width: 20rem;
   font-size: 3rem;
+  max-width: 100%;
+  text-align: center;
 }
 .sec-home .home-cta .home-description {
   color: white;
   max-width: 600px;
   font-weight: 200;
   display: block;
+  text-align: center;
 }
 .sec-home .home-cta .lead-magnet {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
 }
 .sec-home .home-cta .lead-magnet .input-col {
-  max-width: 150px;
+  max-width: 100%;
 }
 
 .sec-features {
   display: flex;
-  height: 500px;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: white;
@@ -83,8 +86,9 @@ body {
 }
 .sec-features .home-cta .home-title {
   color: black;
-  width: 30rem;
   font-size: 2.5rem;
+  max-width: 100%;
+  text-align: center;
 }
 .sec-features .home-cta .item {
   width: 200px;
@@ -94,8 +98,8 @@ body {
 }
 
 .sec-keys {
-  height: 500px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -108,19 +112,22 @@ body {
 }
 .sec-keys .home-cta .home-title {
   color: white;
-  width: 20rem;
   font-size: 3rem;
+  max-width: 100%;
+  text-align: center;
 }
 .sec-keys .home-cta .home-description {
   color: white;
   max-width: 600px;
   display: block;
+  text-align: center;
 }
 .sec-keys .home-cta .lead-magnet {
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
 }
 .sec-keys .home-cta .lead-magnet .input-col {
-  max-width: 150px;
+  max-width: 100%;
 }
 
 /** TaskList CSS**/
@@ -130,10 +137,13 @@ body {
 }
 
 .form-parent {
-  width: 25rem;
+  width: 100%;
+  max-width: 25rem;
   height: 80vh;
   border-radius: 0.75em;
   background-color: rgb(25, 25, 25);
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 .form-label {
@@ -158,7 +168,7 @@ body {
 }
 
 .login-form {
-  width: 70%;
+  width: 75%;
   height: 90%;
 }
 .login-form .login-container {
@@ -170,6 +180,29 @@ body {
 }
 .login-form .login-container .img-div {
   background-color: black;
+}
+
+@media screen and (max-width: 575.98px) {
+  .login-form {
+    width: 100%;
+    height: 70%;
+  }
+  .login-form .login-container {
+    overflow: hidden;
+    border-radius: 1rem;
+  }
+  .login-form .login-container .parent-login-div {
+    background-color: white;
+  }
+  .login-form .login-container .img-div {
+    background-color: black;
+  }
+  .parent-login-div {
+    width: 100% !important;
+  }
+  .input-div {
+    width: 75% !important;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

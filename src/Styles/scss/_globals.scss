@@ -1,11 +1,13 @@
 @use "components";
+
 @mixin section-display {
     width: 100%;
     margin: auto;
     padding: 3rem;
-    
 }
+
 /** HomePage css **/
+
 .sec-home {
     display: flex;
     align-items: center;
@@ -13,37 +15,40 @@
     @include section-display();
 
     .home-cta {
-        .cta-text{
+        .cta-text {
             color: components.$color-main;
             cursor: pointer;
         }
-          
-          .home-title {
+
+        .home-title {
             color: white;
-            width: 20rem;
             font-size: 3rem;
-          }
-          
-          .home-description {
-            color: white;   
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .home-description {
+            color: white;
             max-width: 600px;
             font-weight: 200;
             display: block;
-          }
-    
+            text-align: center;
+        }
+
         .lead-magnet {
-            width: 600px;
+            width: 100%;
+            max-width: 600px;
+
             .input-col {
-                max-width: 150px;
+                max-width: 100%;
             }
         }
     }
-
 }
 
 .sec-features {
     display: flex;
-    height: 500px;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: white;
@@ -51,97 +56,100 @@
 
     .home-cta {
         width: 100%;
-        .cta-text{
+
+        .cta-text {
             color: components.$color-main;
             cursor: pointer;
         }
-          
+
         .home-title {
             color: black;
-            width: 30rem;
             font-size: 2.5rem;
+            max-width: 100%;
+            text-align: center;
         }
-          
+
         .item {
             width: 200px;
-            i{
+
+            i {
                 font-size: x-large;
             }
         }
     }
-
 }
 
-
 .sec-keys {
-    height: 500px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     @include section-display();
 
     .home-cta {
-        .cta-text{
+        .cta-text {
             color: components.$color-main;
             cursor: pointer;
         }
-          
-          .home-title {
+
+        .home-title {
             color: white;
-            width: 20rem;
             font-size: 3rem;
-          }
-          
-          .home-description {
-            color: white;   
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .home-description {
+            color: white;
             max-width: 600px;
             display: block;
-          }
-    
+            text-align: center;
+        }
+
         .lead-magnet {
-            width: 600px;
+            width: 100%;
+            max-width: 600px;
+
             .input-col {
-                max-width: 150px;
+                max-width: 100%;
             }
         }
     }
-
 }
 
 /** TaskList CSS**/
 
 .form-div {
     text-align: center;
-    height: 90vh
+    height: 90vh;
 }
-  
-.form-parent{
-    width: 25rem;
+
+.form-parent {
+    width: 100%;
+    max-width: 25rem;
     height: 80vh;
     border-radius: 0.75em;
     background-color: rgb(25, 25, 25);
-  
+    margin: 0 auto;
+    padding: 1rem;
 }
-  
+
 .form-label {
     color: white;
 }
-  
-#date{
+
+#date {
     color: white;
     border-color: white;
 }
-  
-  
-.form-parent {
-    .form-control{
 
+.form-parent {
+    .form-control {
         width: 100%;
         height: 3rem;
-    } 
-    
+    }
 }
-    
+
 .ErrorMessage {
     margin-top: 0.4rem;
     color: white;
@@ -150,7 +158,7 @@
 }
 
 .login-form {
-    width: 70%;
+    width: 75%;
     height: 90%;
 
     .login-container {
@@ -161,11 +169,37 @@
             background-color: white;
         }
 
-        .img-div{
+        .img-div {
             background-color: black;
-        
+        }
+    }
+}
+
+@media screen and (max-width: 575.98px) {
+    .login-form {
+        width: 100%;
+        height: 70%;
+
+        .login-container {
+            overflow: hidden;
+            border-radius: 1rem;
+
+            .parent-login-div {
+                background-color: white;
+            }
+
+            .img-div {
+                background-color: black;
+            }
         }
     }
 
+    .parent-login-div{
+        width: 100% !important;
+    }
     
+    .input-div {
+        width: 75% !important;
+    }
+
 }

@@ -24,7 +24,7 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="home-img d-none d-md-block">
-                    <img src={Checklist} alt="People" width='600px' height='500px'/>
+                    <img src={Checklist} className='img-fluid' alt="People" width='600px' height='500px'/>
                 </div>
             </section>
 
