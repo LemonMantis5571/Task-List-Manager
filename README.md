@@ -68,7 +68,6 @@ MAINTAINERS
 
 Future Implementations
 -----------
- * RESPONSIVE
  * PROFILE PAGE
  * UPDATE TASKS
 
