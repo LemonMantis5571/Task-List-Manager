@@ -11,7 +11,6 @@ CONTENTS OF THIS FILE
  * Usage
  * Maintainers
  * Future Implementations
- * KNOWN BUGS
 
 
 INTRODUCTION
