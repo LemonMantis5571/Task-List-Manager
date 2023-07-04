@@ -73,8 +73,5 @@ Future Implementations
  * PROFILE PAGE
  * UPDATE TASKS
 
-KNOWN BUGS
------------
-Sometimes there can be a *NAN* TASK, this is due to the poor speed of DATABASE HOST and Formik form handling it can be fixed just changing the section from another to TASK-LIST AGAIN
 
 
