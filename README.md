@@ -2,6 +2,7 @@
 This is a FULL STACK PROJECT (API-REST)
 
 To run this app you need to host the backend yourself [TaskListAPI](https://github.com/LemonMantis5571/TASK-MANAGER-API)
+Also edit the services url to your api host urls.
 
 CONTENTS OF THIS FILE
 ---------------------
