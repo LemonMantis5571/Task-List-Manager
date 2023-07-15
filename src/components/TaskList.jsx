@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { getUserTasks } from '../services/tasks.service';
-import { dispatchActions, myContext, SET_VISIBILITY_FILTER, FETCH_TASKS_SUCCESS, RESET } from './container/TaskContainer';
+import { dispatchActions, myContext, SET_VISIBILITY_FILTER, FETCH_TASKS_SUCCESS, RESET } from './container/TasksReducer';
 import Task from './Task';
 
 
@@ -114,7 +114,7 @@ const TaskList = () => {
 
                             if ((filterstate === 'SHOW_ALL') || (filterstate === 'SHOW_COMPLETED' && task.completed) || (filterstate === 'SHOW_ACTIVE' && !task.completed)) {
                                 return (
-                                    <Task key={index} task={task} taskID={task.taskID} id={index}>
+                                    <Task key={index} task={task} id={task.id} stateID={task.stateID}>
                                     </Task>
                                 );
                             } else {
@@ -125,8 +125,6 @@ const TaskList = () => {
                     </tbody>
                 </table>}
             </div>
-
-
         </div>
     );
 }

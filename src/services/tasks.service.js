@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getUserTasks = async () => {
     const token = localStorage.getItem('token');
-   
+
     const config = {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -15,7 +15,7 @@ export const getUserTasks = async () => {
 
 export const DeleteTasks = (id) => {
     const token = localStorage.getItem('token');
-   
+
     const config = {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -41,14 +41,13 @@ export const CreateTask = async (title, description, completed, priority, expire
         description: description,
         is_completed: completed,
         priority: priority,
-        expires: expires 
+        expires: expires
     }
 
     try {
-        const response = await axios.post('https://task-manager-mjsgqfln4-lemonmantis5571.vercel.app/api/users/create/tasks', body, config); 
-        return response.data; // Devuelve la respuesta de la API
+        const response = await axios.post('https://task-manager-mjsgqfln4-lemonmantis5571.vercel.app/api/users/create/tasks', body, config);
+        return response.data;
     } catch (error) {
         console.log(error);
-         // Lanza el error para que pueda ser manejado por el llamador
     }
 }

@@ -1,26 +1,15 @@
-import React, {useReducer, useContext} from 'react';
-
-
-
-
+import React, { useReducer, useContext } from 'react';
 
 export const myContext = React.createContext(null);
 export const dispatchActions = React.createContext(null);
 
-
-
-export function TaskDispatchContext () {
+export function TaskDispatchContext() {
     return useContext(dispatchActions);
 }
 
 
-
-
-
 let initialState = [];
 let initialFilterState = 'SHOW_ALL';
-
-
 
 export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
@@ -38,14 +27,13 @@ export const RESET = 'RESET'
  */
 const filterTask = (todos, filter) => {
 
-
     switch (filter) {
         case 'SHOW_ALL':
 
             return 'SHOW_ALL';
 
         case 'SHOW_ACTIVE':
-            
+
             return 'SHOW_ACTIVE'
 
         case 'SHOW_COMPLETED':
@@ -73,7 +61,7 @@ const filterReducer = (filterstate, action) => {
 /* A reducer function that takes in two arguments, the state and the action, and returns the state if
 the action type is not ADD_TASK, DELETE_TASK, TOGGLE_COMPLETE, or SET_VISIBILITY_FILTER, otherwise
 it returns the appropriate function with the state and the action payload as arguments. */
-const TaskReducer = (state,action) => {
+const TaskReducer = (state, action) => {
     switch (action.type) {
         case ADD_TASK:
             return [...state, {
@@ -81,19 +69,19 @@ const TaskReducer = (state,action) => {
             }]
 
         case DELETE_TASK:
-            return state.filter((state, index) =>  index !== action.payload.id);
-                
-    
+            return state.filter((task) => (task.stateID !== action.payload.stateID));
+
+
         case TOGGLE_COMPLETE:
-            return state.map((task, index) => (task.id  === action.payload.id ) ? {
+            return state.map((task) => (task.stateID === action.payload.id) ? {
                 ...task,
                 completed: !task.completed
             } : task)
 
 
-        case SET_VISIBILITY_FILTER: 
+        case SET_VISIBILITY_FILTER:
             return filterTask(state, action.payload.filter)
-            
+
 
         case FETCH_TASKS_SUCCESS:
             const date = new Date(action.payload.date);
@@ -101,10 +89,10 @@ const TaskReducer = (state,action) => {
             return [
                 ...state,
                 {
-                    id: state.length,
-                    taskID: action.payload.id,
+                    id: action.payload.id,
+                    stateID: state.length,
                     completed: action.payload.completed,
-                    name : action.payload.name,
+                    name: action.payload.name,
                     description: action.payload.description,
                     priority: action.payload.priority,
                     date: formattedDate
@@ -121,11 +109,9 @@ const TaskReducer = (state,action) => {
 }
 
 
-
-
-const TaskContainer = (props) => {
-        const [state, dispatch] = useReducer(TaskReducer, initialState);
-        const [filterstate, filterdispatch] = useReducer(filterReducer, initialFilterState);
+const TasksReducer = (props) => {
+    const [state, dispatch] = useReducer(TaskReducer, initialState);
+    const [filterstate, filterdispatch] = useReducer(filterReducer, initialFilterState);
 
 
     return (
@@ -137,4 +123,4 @@ const TaskContainer = (props) => {
     );
 }
 
-export default TaskContainer;
+export default TasksReducer;

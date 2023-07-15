@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
-import { loginContext, LOGOUT } from '../components/login/loginReducer';
+import { loginContext, LOGOUT } from '../components/login/LoginReducer';
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import HomePage from '../Pages/HomePage';
-import LoginPage from '../Pages/loginPage';
-import RegisterPage from '../Pages/registerPage';
+import LoginPage from '../Pages/LoginPage';
+import RegisterPage from '../Pages/RegisterPage';
 import { toast } from 'react-toastify';
 
 

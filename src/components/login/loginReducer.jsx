@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, { useReducer } from 'react';
 
 export const loginContext = React.createContext(null);
 export const initialState = {
@@ -16,28 +16,26 @@ export const LOGOUT = 'LOGOUT';
 const loginReducer = (state, action) => {
     switch (action.type) {
         case LOGIN:
-           return {
+            return {
                 ...state,
                 id: action.payload.id,
                 user: action.payload.user,
-                
-           }
-        
+
+            }
+
         case SUCCESS:
-           return {
-            ...state,
-            loggedIn: true
-           }
+            return {
+                ...state,
+                loggedIn: true
+            }
 
         case LOGOUT:
             return {
                 ...state,
                 loggedIn: false
             }
-        
-        case ERROR:
-            break;
-    
+
+
         default:
             return state;
     }
@@ -50,8 +48,8 @@ const LoginReducer = (props) => {
     const [loginState, loginDispatch] = useReducer(loginReducer, initialState);
 
     return (
-        <loginContext.Provider value={{loginState, loginDispatch}}>
-                {props.children}
+        <loginContext.Provider value={{ loginState, loginDispatch }}>
+            {props.children}
         </loginContext.Provider>
     );
 }

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup';
 import loginIMG from '../../assets/images/login.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { LOGIN, loginContext, SUCCESS } from './loginReducer';
+import { LOGIN, loginContext, SUCCESS } from './LoginReducer';
 import { toast } from 'react-toastify';
 
 const initialvalues = {
