@@ -6,8 +6,9 @@ import TaskList from '../components/TaskList';
 import HomePage from '../Pages/HomePage';
 import { toast } from 'react-toastify';
 import { LOGOUT, loginContext } from '../components/login/loginReducer';
-import LoginPage from '../Pages/loginPage';
-import RegisterPage from '../Pages/registerPage';
+import LoginForm from '../components/login/loginForm';
+import RegisterForm from '../components/login/registerForm';
+
 
 
 const TaskNavBar = () => {
@@ -84,8 +85,8 @@ const TaskNavBar = () => {
             </nav>
             <Routes>
                 <Route exact path='/' element={<HomePage></HomePage>}></Route>
-                <Route path='/login' element={<LoginPage />}></Route>
-                <Route path='/register' element={loginState.loggedIn ? <Navigate to='/login' /> : <RegisterPage />}></Route>
+                <Route path='/login' element={<LoginForm/>}></Route>
+                <Route path='/register' element={loginState.loggedIn ? <Navigate to='/login' /> : <RegisterForm/>}></Route>
                 <Route path='/task-form' element={loginState.loggedIn ? <TaskForm></TaskForm> : <Navigate to='/login' />} ></Route>
                 <Route path='/task-list' element={loginState.loggedIn ? <TaskList></TaskList> : <Navigate to='/login' />}></Route>
             </Routes>
