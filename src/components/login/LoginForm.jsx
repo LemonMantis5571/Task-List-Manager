@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import loginIMG from '../../assets/images/login.png';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
-import { LOGIN, SUCCESS, loginContext } from './LoginReducer';
+import { LOGIN, SUCCESS, loginContext } from './loginReducer';
 
 const initialvalues = {
     username: '',

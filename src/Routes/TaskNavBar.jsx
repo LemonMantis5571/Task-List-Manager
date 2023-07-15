@@ -5,7 +5,7 @@ import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import HomePage from '../Pages/HomePage';
 import { toast } from 'react-toastify';
-import { LOGOUT, loginContext } from '../components/login/LoginReducer';
+import { LOGOUT, loginContext } from '../components/login/loginReducer';
 import LoginPage from '../Pages/loginPage';
 import RegisterPage from '../Pages/registerPage';
 

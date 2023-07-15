@@ -2,7 +2,7 @@
 import './App.css';
 import TaskNavBar from './Routes/TaskNavBar';
 
-import LoginReducer from './components/login/LoginReducer';
+import LoginReducer from './components/login/loginReducer';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import TasksReducer from './components/container/TasksReducer';
