@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
-import { loginContext, LOGOUT } from '../components/login/LoginReducer';
+
 import TaskForm from '../components/TaskForm';
 import TaskList from '../components/TaskList';
 import HomePage from '../Pages/HomePage';
-import LoginPage from '../Pages/LoginPage';
-import RegisterPage from '../Pages/RegisterPage';
 import { toast } from 'react-toastify';
+import { LOGOUT, loginContext } from '../components/login/LoginReducer';
+import LoginPage from '../Pages/loginPage';
+import RegisterPage from '../Pages/registerPage';
 
 
 const TaskNavBar = () => {
@@ -19,7 +20,7 @@ const TaskNavBar = () => {
     }
 
 
-const notifySuccess = (message) => {
+    const notifySuccess = (message) => {
         toast.success(message, {
             render: message,
             type: 'success',
@@ -33,7 +34,7 @@ const notifySuccess = (message) => {
             theme: "colored",
             isLoading: false
         });
-}
+    }
 
     return (
         <Router>
@@ -83,8 +84,8 @@ const notifySuccess = (message) => {
             </nav>
             <Routes>
                 <Route exact path='/' element={<HomePage></HomePage>}></Route>
-                <Route path='/login' element={<LoginPage></LoginPage>}></Route>
-                <Route path='/register' element={loginState.loggedIn ? <Navigate to='/login' /> : <RegisterPage></RegisterPage>}></Route>
+                <Route path='/login' element={<LoginPage />}></Route>
+                <Route path='/register' element={loginState.loggedIn ? <Navigate to='/login' /> : <RegisterPage />}></Route>
                 <Route path='/task-form' element={loginState.loggedIn ? <TaskForm></TaskForm> : <Navigate to='/login' />} ></Route>
                 <Route path='/task-list' element={loginState.loggedIn ? <TaskList></TaskList> : <Navigate to='/login' />}></Route>
             </Routes>
