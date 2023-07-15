@@ -3,7 +3,6 @@ import React, { useReducer } from 'react';
 export const loginContext = React.createContext(null);
 export const initialState = {
     loggedIn: false
-
 }
 
 
